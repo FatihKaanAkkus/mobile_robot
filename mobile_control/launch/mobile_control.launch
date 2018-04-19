@@ -1,0 +1,20 @@
+<launch>
+
+	<!-- Joint controllers parameters file -->
+	<rosparam file="$(find mobile_control)/config/mobile_control.yaml" command="load"/>
+
+	<node name="controller_spawner"
+		pkg="controller_manager"
+		type="spawner" 
+		respawn="false"
+		output="screen"
+		ns="/mobile" 
+		args="joint_state_controller"
+	/><!-- args="joint_state_controller rightWheel_effort_controller leftWheel_effort_controller" -->
+	
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+		<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find mobile_description)/urdf/mobile.xacro'" />
+		<remap from="/joint_states" to="/mobile/joint_states" />
+	</node>
+
+</launch>

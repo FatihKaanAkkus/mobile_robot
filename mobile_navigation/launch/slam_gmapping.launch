@@ -1,0 +1,20 @@
+<launch>
+
+    <arg name="rvizconfig" default="$(find mobile_description)/rviz/slam.rviz"/>
+
+    <!-- Gazebo package called here! -->
+    <include file="$(find mobile_gazebo)/launch/mobile_world.launch">
+        <arg name="rvizconfig" value="$(arg rvizconfig)"/>
+    </include>
+
+    <!-- slam gmapping called here! -->
+    <node pkg="gmapping" 
+          name="slam_gmapping" 
+          type="slam_gmapping">
+
+          <rosparam file="$(find mobile_navigation)/config/slam_gmapping_params.yaml" />
+          <remap from="scan" to="mobile/laser/scan" />
+
+    </node>
+
+</launch>

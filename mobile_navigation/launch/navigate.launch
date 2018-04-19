@@ -1,0 +1,40 @@
+<!-- 
+
+odom_frame_id : odom
+base_frame_id : base_footprint
+global_frame_id : map 
+
+-->
+<launch>
+
+    <arg name="rvizconfig" default="$(find mobile_description)/rviz/navigation.rviz"/>
+
+    <!-- Run slamp_gmapping -->
+    <include file="$(find mobile_navigation)/launch/slam_gmapping.launch">
+        <arg name="rvizconfig" value="$(arg rvizconfig)"/>
+    </include>
+
+    <node pkg="move_base"
+          type="move_base"
+          name="move_base"
+          respawn="false"
+          output="screen">
+
+        <!-- General params -->
+        <rosparam file="$(find mobile_navigation)/config/move_base_params.yaml" command="load" />
+        <!-- Costmap params -->
+        <rosparam file="$(find mobile_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap"/>
+        <rosparam file="$(find mobile_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+        <rosparam file="$(find mobile_navigation)/config/local_costmap_params.yaml" command="load"/>
+        <rosparam file="$(find mobile_navigation)/config/global_costmap_params.yaml" command="load"/>
+        <!-- Local planner -->
+        <rosparam file="$(find mobile_navigation)/config/teb_local_planner_params.yaml" command="load" />
+        <!-- Global planner -->
+        <rosparam file="$(find mobile_navigation)/config/navfn_global_planner_params.yaml" command="load" />
+
+        <remap from="cmd_vel" to="mobile/cmd_vel"/>
+        <remap from="odom" to="mobile/odom"/>
+
+    </node>
+
+</launch>

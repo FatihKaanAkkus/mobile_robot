@@ -1,0 +1,11 @@
+# Ignore everything ...
+/*
+
+# ... but not this file ...
+!/.gitignore
+
+# ... and also these folders
+!/mobile_description/
+!/mobile_gazebo/
+!/mobile_control/
+!/mobile_navigation/

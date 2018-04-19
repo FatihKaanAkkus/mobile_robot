@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<robot name="mobile" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- Robot constants and properties -->
+	<xacro:include filename="$(find mobile_description)/urdf/mobile_properties.xacro" />
+	<!-- Import Rviz colors -->
+	<xacro:include filename="$(find mobile_description)/urdf/materials.xacro" />
+	<!-- Gazebo aspects of the robot -->
+	<xacro:include filename="$(find mobile_description)/urdf/mobile.gazebo" />
+	<!-- Inertia matrices -->
+	<xacro:include filename="$(find mobile_description)/urdf/macros.xacro" />
+
+	<!-- fix the base -->
+	<link name="base_footprint" />
+
+	<joint name="base_joint" type="fixed">
+		<parent link="base_footprint"/>
+		<child link="chassis"/>
+	</joint>
+
+	<!-- robot chassis -->
+	<link name="chassis">
+		<collision> 
+			<origin xyz="0 0 ${wheelRadius}" 
+					rpy="0 0 0"/> 
+			<geometry> 
+				<mesh filename="package://mobile_description/meshes/chassis.STL" />
+			</geometry> 
+		</collision>
+		<visual> 
+			<origin xyz="0 0 ${wheelRadius}" 
+					rpy="0 0 0"/> 
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/chassis.STL" />
+			</geometry> 
+			<material name="red"/>
+		</visual>
+		<inertial> 
+			<origin xyz="0 0 ${wheelRadius}" 
+					rpy="0 0 0"/> 
+			<mass value="${chassisMass}"/> 
+			<inertia
+				ixx="0.017271"
+				ixy="0"
+				ixz="0"
+				iyy="0.035417"
+				iyz="0"
+				izz="0.048521" />
+		</inertial>
+	</link>
+
+	<!-- left-front wheel -->
+	<wheel lr="l" fb="f" Tlr="1" Tfb="1"/>
+	<!-- left-back wheel -->
+	<wheel lr="l" fb="b" Tlr="1" Tfb="-1"/>
+	<!-- right-front wheel -->
+	<wheel lr="r" fb="f" Tlr="-1" Tfb="1"/>
+	<!-- right-back wheel -->
+	<wheel lr="r" fb="b" Tlr="-1" Tfb="-1"/>
+
+	<!-- Sensor models -->
+	<xacro:include filename="$(find mobile_description)/urdf/sensors.xacro" />
+	
+</robot>
