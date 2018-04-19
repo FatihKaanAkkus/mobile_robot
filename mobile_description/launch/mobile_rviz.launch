@@ -1,7 +1,7 @@
 <launch>
 
 	<arg name="model" default="$(find mobile_description)/urdf/mobile.xacro"/>
-	<arg name="gui" default="false" />
+	<arg name="gui" default="true" />
 	<arg name="rvizconfig" default="$(find mobile_description)/rviz/mobile.rviz" />
 
 	<param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />

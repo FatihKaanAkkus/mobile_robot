@@ -21,21 +21,6 @@
 
 	<!-- robot chassis -->
 	<link name="chassis">
-		<collision> 
-			<origin xyz="0 0 ${wheelRadius}" 
-					rpy="0 0 0"/> 
-			<geometry> 
-				<mesh filename="package://mobile_description/meshes/chassis.STL" />
-			</geometry> 
-		</collision>
-		<visual> 
-			<origin xyz="0 0 ${wheelRadius}" 
-					rpy="0 0 0"/> 
-			<geometry>
-				<mesh filename="package://mobile_description/meshes/chassis.STL" />
-			</geometry> 
-			<material name="red"/>
-		</visual>
 		<inertial> 
 			<origin xyz="0 0 ${wheelRadius}" 
 					rpy="0 0 0"/> 
@@ -48,6 +33,21 @@
 				iyz="0"
 				izz="0.048521" />
 		</inertial>
+		<visual> 
+			<origin xyz="0 0 ${wheelRadius}" 
+					rpy="0 0 0"/> 
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/chassis.STL" />
+			</geometry> 
+			<material name="red"/>
+		</visual>
+		<collision> 
+			<origin xyz="0 0 ${wheelRadius}" 
+					rpy="0 0 0"/> 
+			<geometry> 
+				<mesh filename="package://mobile_description/meshes/chassis.STL" />
+			</geometry> 
+		</collision>
 	</link>
 
 	<!-- left-front wheel -->
@@ -59,7 +59,270 @@
 	<!-- right-back wheel -->
 	<wheel lr="r" fb="b" Tlr="-1" Tfb="-1"/>
 
+	<!-- manipulator base -->
+	<link name="manip_link_base">
+		<inertial>
+			<origin xyz="0 0.0008784 -0.050752" rpy="0 0 0"/>
+			<mass value="0.55594"/>
+			<inertia
+				ixx="0.00781"
+				ixy="0"
+				ixz="0"
+				iyy="0.01091"
+				iyz="-7E-05"
+				izz="0.0032"/>
+		</inertial>
+		<visual>
+			<origin
+				xyz="0 0 0"
+				rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_base.STL"/>
+			</geometry>
+			<material name="red"/>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_base.STL"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="manip_joint_base" type="fixed">
+		<parent link="chassis"/>
+		<child link="manip_link_base"/>
+		<origin xyz="${0.135/2-0.01} 0 ${0.145+0.0165/2-0.005}" rpy="0 0 ${PI/2}"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="0" velocity="0"/>
+	</joint>
+
+	<link name="manip_link_1">
+		<inertial>
+			<origin
+				xyz="-0.0051711 0.026117 0"
+				rpy="1.5708 0 0" />
+			<mass
+				value="0.19357" />
+			<inertia
+				ixx="0.00064"
+				ixy="-0.0006"
+				ixz="0"
+				iyy="0.00067"
+				iyz="0"
+				izz="0.00104" />
+		</inertial>
+		<visual>
+			<origin
+				xyz="0 0 0"
+				rpy="1.5708 0 0" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_1.STL"/>
+			</geometry>
+			<material name="orange"/>
+		</visual>
+		<collision>
+			<origin
+				xyz="0 0 0"
+				rpy="1.5708 0 0" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_1.STL"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="manip_joint_1" type="revolute">
+		<parent link="manip_link_base"/>
+		<child link="manip_link_1"/>
+		<origin
+			xyz="0 0 0.018"
+			rpy="0 0 0" />
+		<axis xyz="0 0 1"/>
+		<limit effort="1.0" velocity="1.0" lower="${-3.14}" upper="${3.14}"/>
+	</joint>
+
+	<link name="manip_link_2">
+		<inertial>
+			<origin
+				xyz="0.0068906 0.13351 -0.00035086"
+				rpy="0 0 0" />
+			<mass
+				value="0.11449" />
+			<inertia
+				ixx="0.0053"
+				ixy="0.00029"
+				ixz="0"
+				iyy="0.00022"
+				iyz="-1E-05"
+				izz="0.00548" />
+		</inertial>
+		<visual>
+			<origin
+				xyz="0 0 0"
+				rpy="0 -1.5708 0" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_2.STL"/>
+			</geometry>
+			<material name="blue"/>
+		</visual>
+		<collision>
+			<origin
+				xyz="0 0 0"
+				rpy="0 -1.5708 0" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_2.STL"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="manip_joint_2" type="revolute">
+		<parent link="manip_link_1"/>
+		<child link="manip_link_2"/>
+		<origin
+			xyz="0 0 0.05"
+			rpy="1.5708 0 1.5708" />
+		<axis
+			xyz="0 0 1" />
+		<limit effort="1.0" velocity="1.0" lower="${-1.31}" upper="${1.31}"/>
+	</joint>
+
+	<link name="manip_link_3">
+		<inertial>
+			<origin
+				xyz="0.0054453 0.12903 -0.0002831"
+				rpy="0 0 0" />
+			<mass
+				value="0.11307" />
+			<inertia
+				ixx="0.01892"
+				ixy="0.00037"
+				ixz="0"
+				iyy="0.00016"
+				iyz="-1E-05"
+				izz="0.01905" />
+		</inertial>
+		<visual>
+			<origin
+				xyz="0 0 0"
+				rpy="0 -1.5708 0" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_3.STL"/>
+			</geometry>
+			<material name="orange"/>
+		</visual>
+		<collision>
+			<origin
+				xyz="0 0 0"
+				rpy="0 0 -1.5708" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_3.STL"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="manip_joint_3" type="revolute">
+		<parent link="manip_link_2"/>
+		<child link="manip_link_3"/>
+		<origin
+			xyz="0 0.205 0"
+			rpy="0 0 0" />
+		<axis
+			xyz="0 0 1" />
+		<limit effort="1.0" velocity="1.0" lower="${-1.31}" upper="${1.31}"/>
+	</joint>
+
+	<link name="manip_link_4">
+		<inertial>
+			<origin
+				xyz="-0.0094381 0.042624 0"
+				rpy="0 0 0" />
+			<mass
+				value="0.068484" />
+			<inertia
+				ixx="0.01827"
+				ixy="-0.00033"
+				ixz="0"
+				iyy="2E-05"
+				iyz="0"
+				izz="0.01828" />
+		</inertial>
+		<visual>
+			<origin
+				xyz="0 0 0"
+				rpy="0 -1.5708 0" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_4.STL"/>
+			</geometry>
+			<material name="blue"/>
+		</visual>
+		<collision>
+			<origin
+				xyz="0 0 0"
+				rpy="0 -1.5708 0" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_4.STL"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="manip_joint_4" type="revolute">
+		<parent link="manip_link_3"/>
+		<child link="manip_link_4"/>
+		<origin
+			xyz="0 0.2 0"
+			rpy="0 0 0" />
+		<axis
+			xyz="0 0 1" />
+		<limit effort="1.0" velocity="1.0" lower="${-3.14/2}" upper="${3.14/2}"/>
+	</joint>
+
+	<link name="manip_link_gripper">
+		<inertial>
+			<origin
+				xyz="0.0019455 0.039335 0.01466"
+				rpy="0 0 0" />
+			<mass
+				value="0.050398" />
+			<inertia
+				ixx="0.0183"
+				ixy="-0.00035"
+				ixz="1E-05"
+				iyy="4E-05"
+				iyz="-0.00044"
+				izz="0.0183" />
+		</inertial>
+		<visual>
+			<origin
+				xyz="0 0 0"
+				rpy="1.5708 0 1.5708" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_gripper.STL"/>
+			</geometry>
+			<material name="orange"/>
+		</visual>
+		<collision>
+			<origin
+				xyz="0 0 0"
+				rpy="1.5708 0 1.5708" />
+			<geometry>
+				<mesh filename="package://mobile_description/meshes/manip_link_gripper.STL"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="manip_joint_gripper" type="revolute">
+		<parent link="manip_link_4"/>
+		<child link="manip_link_gripper"/>
+		<origin
+			xyz="0 0.0895 -0.01"
+			rpy="-1.5708 0 0" />
+		<axis
+			xyz="0 0 1" />
+		<limit effort="1.0" velocity="1.0" lower="${-3.14}" upper="${3.14}"/>
+	</joint>
+
 	<!-- Sensor models -->
 	<xacro:include filename="$(find mobile_description)/urdf/sensors.xacro" />
 	
+
 </robot>
