@@ -8,7 +8,7 @@
 	<xacro:property name="chassisHeight" value="0.10"/>
 	<xacro:property name="chassisLength" value="0.40"/>
 	<xacro:property name="chassisWidth" value="0.27"/>
-	<xacro:property name="chassisMass" value="2.5"/>
+	<xacro:property name="chassisMass" value="5.0"/>
 
 	<!-- Differential-drive wheels properties -->
 	<xacro:property name="wheelWidth" value="0.026"/>
@@ -29,7 +29,7 @@
 	<xacro:property name="cameraWidth" value="0.08"/>
 	<xacro:property name="cameraHeight" value="0.03"/>
 	<xacro:property name="cameraMass" value="0.01"/>
-	<xacro:property name="cameraOffsetX" value="0.178"/>
-	<xacro:property name="cameraOffsetZ" value="0.122"/>
+	<xacro:property name="cameraOffsetX" value="0.18"/>
+	<xacro:property name="cameraOffsetZ" value="0.1222"/>
 
 </robot>

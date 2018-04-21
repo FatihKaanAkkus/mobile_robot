@@ -8,9 +8,9 @@ DWAPlannerROS:
     holonomic_robot: false
 
     # Robot Configuration Parameters
-    acc_lim_x:  1.00
+    acc_lim_x:  0.33 #1.00
     acc_lim_y:  0.00
-    acc_lim_th: 2.00
+    acc_lim_th: 0.66 #2.00
     acc_lim_theta: 3.20
     acc_limit_trans: 0.1
 

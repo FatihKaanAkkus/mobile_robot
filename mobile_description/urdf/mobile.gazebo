@@ -23,67 +23,55 @@
 
 	<!-- Chassis -->
 	<gazebo reference="chassis">
-		<mu1>0.3</mu1>
-		<mu2>0.3</mu2>
+		<mu1 value="0.3"/>
+		<mu2 value="0.3"/>
 		<material>Gazebo/Red</material>
 	</gazebo>
 
 	<!-- Manipulator -->
 	<gazebo reference="manip_link_base">
-		<mu1 value="1.0"/>
-		<mu2 value="1.0"/>
-		<kp value="10000000.0"/>
-		<kd value="100.0"/>
+		<mu1 value="0.2"/>
+		<mu2 value="0.2"/>
 		<material>Gazebo/Red</material>
 	</gazebo>
 
 	<gazebo reference="manip_link_1">
-		<mu1 value="1.0"/>
-		<mu2 value="1.0"/>
-		<kp value="10000000.0"/>
-		<kd value="100.0"/>
-		<material>Gazebo/Orange</material>
+		<mu1 value="0.2"/>
+		<mu2 value="0.2"/>
+		<material>Gazebo/Green</material>
 	</gazebo>
 
 	<gazebo reference="manip_link_2">
-		<mu1 value="1.0"/>
-		<mu2 value="1.0"/>
-		<kp value="10000000.0"/>
-		<kd value="100.0"/>
-		<material>Gazebo/Purple</material>
+		<mu1 value="0.2"/>
+		<mu2 value="0.2"/>
+		<material>Gazebo/Blue</material>
 	</gazebo>
 
 	<gazebo reference="manip_link_3">
-		<mu1 value="1.0"/>
-		<mu2 value="1.0"/>
-		<kp value="10000000.0"/>
-		<kd value="100.0"/>
-		<material>Gazebo/Orange</material>
+		<mu1 value="0.2"/>
+		<mu2 value="0.2"/>
+		<material>Gazebo/Green</material>
 	</gazebo>
 
 	<gazebo reference="manip_link_4">
-		<mu1 value="1.0"/>
-		<mu2 value="1.0"/>
-		<kp value="10000000.0"/>
-		<kd value="100.0"/>
-		<material>Gazebo/Purple</material>
+		<mu1 value="0.2"/>
+		<mu2 value="0.2"/>
+		<material>Gazebo/Blue</material>
 	</gazebo>
 	
 	<gazebo reference="manip_link_gripper">
-		<mu1 value="1.0"/>
-		<mu2 value="1.0"/>
-		<kp value="10000000.0"/>
-		<kd value="100.0"/>
-		<material>Gazebo/Orange</material>
+		<mu1 value="0.2"/>
+		<mu2 value="0.2"/>
+		<material>Gazebo/Green</material>
 	</gazebo>
 
 	<transmission name="manip_link_1_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="manip_joint_1">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="manip_joint_1_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
@@ -91,10 +79,10 @@
 	<transmission name="manip_link_2_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="manip_joint_2">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="manip_joint_2_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
@@ -102,10 +90,10 @@
 	<transmission name="manip_link_3_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="manip_joint_3">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="manip_joint_3_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
@@ -113,21 +101,21 @@
 	<transmission name="manip_link_4_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="manip_joint_4">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="manip_joint_4_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
 
 	<transmission name="manip_link_gripper_trans">
 		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="manip_joint_gripper">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+		<joint name="manip_joint_5">
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 		</joint>
-		<actuator name="manip_joint_gripper_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+		<actuator name="manip_joint_5_motor">
+			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>

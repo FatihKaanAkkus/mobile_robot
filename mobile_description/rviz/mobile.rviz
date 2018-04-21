@@ -166,7 +166,7 @@ Visualization Manager:
           Value: true
         wrf:
           Value: true
-      Marker Scale: 0.0799999982
+      Marker Scale: 0.100000001
       Name: TF
       Show Arrows: false
       Show Axes: true
@@ -220,25 +220,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.46894741
+      Distance: 1.7644918
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.178602293
-        Y: 0.00540766539
-        Z: 0.338707447
+        X: -0.0427300818
+        Y: 0.106761143
+        Z: 0.204769433
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.384797335
+      Pitch: 0.0197973587
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.68175006
+      Yaw: 5.47989655
     Saved: ~
 Window Geometry:
   Displays:

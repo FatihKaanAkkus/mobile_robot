@@ -37,7 +37,7 @@
 
 			<inertial>
 				<origin 
-					xyz="0 0 0" 
+					xyz="0 0 0.005" 
 					rpy="0 0 0" />
 				<mass value="${wheelMass}"/>
 				<cylinder_inertia 

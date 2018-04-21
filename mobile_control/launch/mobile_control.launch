@@ -9,7 +9,12 @@
 		respawn="false"
 		output="screen"
 		ns="/mobile" 
-		args="joint_state_controller"
+		args="joint_state_controller 
+			joint_1_position_controller
+			joint_2_position_controller
+			joint_3_position_controller
+			joint_4_position_controller
+			joint_gripper_position_controller"
 	/><!-- args="joint_state_controller rightWheel_effort_controller leftWheel_effort_controller" -->
 	
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
