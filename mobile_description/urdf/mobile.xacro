@@ -24,13 +24,13 @@
 		<inertial> 
 			<origin xyz="0 0 ${wheelRadius+0.035}" 
 					rpy="0 0 0"/> 
-			<mass value="${chassisMass}"/> 
+			<mass value="4.57804"/> 
 			<inertia
 				ixx="0.04680"
-				ixy="0"
+				ixy="0.00000"
 				ixz="-0.00022"
 				iyy="0.07212"
-				iyz="0"
+				iyz="0.00000"
 				izz="0.10440" />
 		</inertial>
 		<visual> 
@@ -97,8 +97,10 @@
 	<joint name="manip_joint_base" type="fixed">
 		<parent link="chassis"/>
 		<child link="manip_link_base"/>
-		<origin xyz="${0.135/2-0.01} 0 ${0.145+0.0165/2-0.005}" rpy="0 0 ${PI/2}"/>
-		<axis xyz="0 0 1"/>
+		<origin 
+			xyz="${0.135/2-0.01} 0 ${0.145+0.0165/2-0.005}" 
+			rpy="0 0 ${PI/2}"/>
+		<axis xyz="0 0 0"/>
 		<limit effort="0" velocity="0"/>
 	</joint>
 
@@ -108,13 +110,13 @@
 				xyz="-0.00517 0.00001 0.02612"
 				rpy="0 0 0" />
 			<mass
-				value="0.19357" />
+				value="0.52263" />
 			<inertia
 				ixx="0.00071"
 				ixy="-0.00005"
-				ixz="0.0"
+				ixz="0.00000"
 				iyy="0.00181"
-				iyz="0.0"
+				iyz="0.00000"
 				izz="0.00178" />
 		</inertial>
 		<visual>
@@ -157,9 +159,9 @@
 			<inertia
 				ixx="0.00177"
 				ixy="0.00036"
-				ixz="0.0"
+				ixz="0.00000"
 				iyy="0.00057"
-				iyz="0.0"
+				iyz="0.00000"
 				izz="0.00224" />
 		</inertial>
 		<visual>
@@ -203,9 +205,9 @@
 			<inertia
 				ixx="0.00175"
 				ixy="0.00032"
-				ixz="0.0"
+				ixz="0.00000"
 				iyy="0.00042"
-				iyz="0.0"
+				iyz="0.00000"
 				izz="0.00208" />
 		</inertial>
 		<visual>
@@ -248,10 +250,10 @@
 				value="0.18491" />
 			<inertia
 				ixx="0.00017"
-				ixy="0.0"
-				ixz="0.0"
+				ixy="0.00000"
+				ixz="0.00000"
 				iyy="0.00005"
-				iyz="0.0"
+				iyz="0.00000"
 				izz="0.00018" />
 		</inertial>
 		<visual>
@@ -294,8 +296,8 @@
 				value="0.13607" />
 			<inertia
 				ixx="0.00010"
-				ixy="0.0"
-				ixz="0.0"
+				ixy="0.00000"
+				ixz="0.00000"
 				iyy="0.00006"
 				iyz="-0.00002"
 				izz="0.00010" />
