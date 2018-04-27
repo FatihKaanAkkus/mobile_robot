@@ -5,6 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Maps1/Global CostMap1
+        - /Sensors1
       Splitter Ratio: 0.5
     Tree Height: 278
   - Class: rviz/Selection
@@ -67,11 +68,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        caster_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         chassis:
           Alpha: 1
           Show Axes: false
@@ -82,12 +78,52 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel:
+        m_base:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel:
+        m_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m_link_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m_link_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wlb:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wlf:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wrb:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wrf:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -200,7 +236,7 @@ Visualization Manager:
               LaserScan: true
               Value: true
             TF: true
-            Value: true
+            Value: false
             dwa_local_planner:
               Value: true
               dwa Local Path: true
@@ -258,9 +294,7 @@ Visualization Manager:
           Marker Topic: /move_base/TebLocalPlannerROS/teb_markers
           Name: teb Marker
           Namespaces:
-            PointObstacles: true
-            RobotFootprintModel: true
-            TebContainer: true
+            {}
           Queue Size: 100
           Value: true
         - Alpha: 1

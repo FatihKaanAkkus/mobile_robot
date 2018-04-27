@@ -1,5 +1,8 @@
 <launch>
 
+	<!-- FOR EMPTY WORLD TESTS -->
+	<!-- <arg name="world" default="$(find mobile_gazebo)/worlds/empty.world"/> -->
+	<!-- FOR NON-EMPTY WORLD TESTS -->
 	<arg name="world" default="$(find mobile_gazebo)/worlds/garage.world"/>
 	<arg name="paused" default="true"/>
 	<arg name="use_sim_time" default="true"/>
