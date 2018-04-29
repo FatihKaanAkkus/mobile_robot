@@ -1,2 +1,1 @@
-float64 command
-float64 max_effort
+float64 command_data

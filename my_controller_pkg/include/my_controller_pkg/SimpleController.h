@@ -21,7 +21,7 @@ namespace my_controller_pkg
         void update(const ros::Time& time, const ros::Duration& period);
         void stopping(const ros::Time& time);
 
-        my_controller_msgs::SimpleControllerCommandPtr cmd_box_;
+        my_controller_msgs::SimpleControllerCommand cmd_box_;
 
     private:
         std::vector<hardware_interface::JointHandle> effortJointHandles;
@@ -29,13 +29,21 @@ namespace my_controller_pkg
         std::vector<double> buffer_current_positions;
         std::vector<double> buffer_current_velocities;
         std::vector<double> buffer_current_efforts;
+
+        double coeff_Kp;
+        double coeff_Ki;
+        double coeff_Kd;
+
+        std::vector<double> err;
+        std::vector<double> err_old;
+        std::vector<double> err_sum;
         
         ros::NodeHandle node_;
         ros::Subscriber sub_cmd_;
 
         ros::Time last_time_;
 
-        void sub_cmd_Callback(const my_controller_msgs::SimpleControllerCommandPtr& msg);
+        void sub_cmd_Callback(const my_controller_msgs::SimpleControllerCommand& msg);
     };
 }
 

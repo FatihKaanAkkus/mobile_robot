@@ -30,6 +30,10 @@ namespace my_controller_pkg
 				buffer_current_positions.resize(effortJointHandles.size(), 0.0);
 				buffer_current_velocities.resize(effortJointHandles.size(), 0.0);
 				buffer_current_efforts.resize(effortJointHandles.size(), 0.0);
+
+				err.resize(effortJointHandles.size(), 0.0);
+				err_old.resize(effortJointHandles.size(), 0.0);
+				err_sum.resize(effortJointHandles.size(), 0.0);
 			}
 			else
 			{
@@ -42,6 +46,24 @@ namespace my_controller_pkg
 			ROS_ERROR("No joints in given namespace: %s", n.getNamespace().c_str());
 			return false;
 		}
+
+		// Coefficients
+		if(!n.getParam("Kp", coeff_Kp)){
+			ROS_INFO("No Kp coefficient is given.");
+			coeff_Kp = 0.0;
+		}
+
+		if(!n.getParam("Ki", coeff_Ki)){
+			ROS_INFO("No Ki coefficient is given.");
+			coeff_Ki = 0.0;
+		}
+
+		if(!n.getParam("Kd", coeff_Kd)){
+			ROS_INFO("No Kd coefficient is given.");
+			coeff_Kd = 0.0;
+		}
+
+		ROS_INFO("coeff_Kp: %lf, coeff_Ki: %lf, coeff_Kd: %lf", coeff_Kp, coeff_Ki, coeff_Kd);
 
 		// Subscribe to command topic 
 		const std::string sub_topic("command");
@@ -57,6 +79,10 @@ namespace my_controller_pkg
 			buffer_current_positions[i] = effortJointHandles[i].getPosition();
 			buffer_current_velocities[i] = effortJointHandles[i].getVelocity();
 			buffer_current_efforts[i] = effortJointHandles[i].getEffort();
+
+			err[i] = 0.0;
+			err_old[i] = 0.0;
+			err_sum[i] = 0.0;
 		}
 	}
 
@@ -65,7 +91,7 @@ namespace my_controller_pkg
 		// Period
 		ros::Duration dt = time - last_time_;
 
-		my_controller_msgs::SimpleControllerCommandPtr command;
+		my_controller_msgs::SimpleControllerCommand command;
 
 		command = cmd_box_;
 
@@ -74,16 +100,28 @@ namespace my_controller_pkg
 			buffer_current_positions[i] = effortJointHandles[i].getPosition();
 			buffer_current_velocities[i] = effortJointHandles[i].getVelocity();
 
-			buffer_command_effort[i] = 0.0;
+			err[i] = ((double) command.command_data) - buffer_current_positions[i];
+
+			err_sum[i] += dt.toSec() * err[i];
+
+			double pd = coeff_Kp * err[i] + coeff_Ki * err_sum[i] + coeff_Kd * (err[i]-err_old[i]) / dt.toSec();
+
+			// ROS_INFO("pd: %lf,  coeff_Kp: %lf,  coeff_Kd: %lf", pd, coeff_Kp, coeff_Kd);
+			err_old[i] = err[i];
+
+			// ROS_INFO("Command: %f", command.command_data);
+			buffer_command_effort[i] = pd;
 			
 			effortJointHandles[i].setCommand(buffer_command_effort[i]);
-		}	
+		}
+
+		last_time_ = time;
 	}
 
 	void SimpleController::stopping(const ros::Time& time)
 	{}
 
-	void SimpleController::sub_cmd_Callback(const my_controller_msgs::SimpleControllerCommandPtr& msg)
+	void SimpleController::sub_cmd_Callback(const my_controller_msgs::SimpleControllerCommand& msg)
 	{
 		cmd_box_ = msg;
 	}

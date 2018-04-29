@@ -11,12 +11,12 @@ mobile:
 
   # Effort Controllers ---------------------------------------
   leftFrontWheel_controller:
-    type: my_controller_pkg/SimpleController
-    joints:
-      - wljf
-    # type: effort_controllers/JointEffortController
-    # joint: wljf
-    # pid: {p: 100.0, i: 0.1, d: 10.0}
+    type: effort_controllers/JointEffortController
+    joint: wljf
+    pid: {p: 100.0, i: 0.1, d: 10.0}
+    # type: my_controller_pkg/SimpleController
+    # joints:
+    #   - wljf
     
   leftBackWheel_controller:
     type: effort_controllers/JointEffortController
@@ -35,26 +35,56 @@ mobile:
 
   # Arm Controllers ---------------------------------------
   joint_1_controller:
-    type: effort_controllers/JointEffortController
-    joint: m_joint_1
-    pid: {p: 100.0, i: 0.1, d: 10.0}
+    type: my_controller_pkg/SimpleController
+    joints:
+      - m_joint_1
+    Kp: 100.0
+    Ki: 0.1
+    Kd: 10.0
+    # type: effort_controllers/JointEffortController
+    # joint: m_joint_1
+    # pid: {p: 100.0, i: 0.1, d: 10.0}
 
   joint_2_controller:
-    type: effort_controllers/JointEffortController
-    joint: m_joint_2
-    pid: {p: 100.0, i: 0.1, d: 10.0}
+    type: my_controller_pkg/SimpleController
+    joints:
+      - m_joint_2
+    Kp: 100.0
+    Ki: 0.1
+    Kd: 10.0
+    # type: effort_controllers/JointEffortController
+    # joint: m_joint_2
+    # pid: {p: 100.0, i: 0.1, d: 10.0}
 
   joint_3_controller:
-    type: effort_controllers/JointEffortController
-    joint: m_joint_3
-    pid: {p: 100.0, i: 0.1, d: 10.0}
+    type: my_controller_pkg/SimpleController
+    joints:
+      - m_joint_3
+    Kp: 25.0
+    Ki: 0.1
+    Kd: 20.0
+    # type: effort_controllers/JointEffortController
+    # joint: m_joint_3
+    # pid: {p: 100.0, i: 0.1, d: 10.0}
 
   joint_4_controller:
-    type: effort_controllers/JointEffortController
-    joint: m_joint_4
-    pid: {p: 100.0, i: 0.1, d: 10.0}
+    type: my_controller_pkg/SimpleController
+    joints:
+      - m_joint_4
+    Kp: 25.0
+    Ki: 0.1
+    Kd: 20.0
+    # type: effort_controllers/JointEffortController
+    # joint: m_joint_4
+    # pid: {p: 100.0, i: 0.1, d: 10.0}
 
   joint_gripper_controller:
-    type: effort_controllers/JointEffortController
-    joint: m_joint_5
-    pid: {p: 100.0, i: 0.1, d: 10.0}
+    type: my_controller_pkg/SimpleController
+    joints:
+      - m_joint_5
+    Kp: 25.0
+    Ki: 0.1
+    Kd: 20.0
+    # type: effort_controllers/JointEffortController
+    # joint: m_joint_5
+    # pid: {p: 100.0, i: 0.1, d: 10.0}
