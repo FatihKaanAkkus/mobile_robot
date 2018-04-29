@@ -4,12 +4,16 @@ project(my_controller_pkg)
 find_package(catkin REQUIRED COMPONENTS
   controller_interface
   controller_manager
+  my_controller_msgs
 )
 
 include_directories(include ${Boost_INCLUDE_DIR} ${catkin_INCLUDE_DIRS})
 
 catkin_package(
-  CATKIN_DEPENDS controller_manager controller_interface
+  CATKIN_DEPENDS 
+    controller_manager 
+    controller_interface
+    my_controller_msgs
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
 )
@@ -18,6 +22,7 @@ catkin_package(
 add_library(${PROJECT_NAME}
   src/effort_test_controller.cpp
   src/my_robot_hw.cpp
+  src/SimpleController.cpp
 )
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 

@@ -11,7 +11,7 @@ mobile:
 
   # Effort Controllers ---------------------------------------
   leftFrontWheel_controller:
-    type: my_controller_pkg/EffortTestController
+    type: my_controller_pkg/SimpleController
     joints:
       - wljf
     # type: effort_controllers/JointEffortController

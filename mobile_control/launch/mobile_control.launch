@@ -26,4 +26,6 @@
 		<remap from="/joint_states" to="/mobile/joint_states" />
 	</node>
 
+	<!-- <node pkg="my_controller_pkg" type="dummy_app" name="dummy_app"/> -->
+
 </launch>

@@ -29,7 +29,7 @@
 	</gazebo>
 
 	<!-- Skid Drive -->
-	<gazebo>
+	<!-- <gazebo>
 		<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
 			<alwaysOn>1</alwaysOn>
 			<updateRate>100.0</updateRate>
@@ -51,7 +51,7 @@
 			<covariance_z>0.0001</covariance_z>
 			<covariance_yaw>0.0001</covariance_yaw>
 		</plugin>
-	</gazebo>
+	</gazebo> -->
 
 	<!-- Differential Drive -->
 	<!-- <gazebo>
