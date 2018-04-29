@@ -24,22 +24,14 @@
 		<inertial> 
 			<origin xyz="0 0 ${wheelRadius+0.035}" 
 					rpy="0 0 0"/> 
-			<mass value="15.0"/> 
+			<mass value="12.0"/> 
 			<inertia
-				ixx="0.017271"
+				ixx="0.04680"
 				ixy="0"
-				ixz="0"
-				iyy="0.035417"
+				ixz="-0.00022"
+				iyy="0.07212"
 				iyz="0"
-				izz="0.048521" />
-			<!-- <inertia
-				ixx="1.0"
-				ixy="0.00000"
-				ixz="0.00000"
-				iyy="1.0"
-				iyz="0.00000"
-				izz="1.0" /> -->
-			<!-- <box_inertia m="40" x="0.40" y="0.27" z="0.10" /> -->
+				izz="0.10440" />
 		</inertial>
 		<visual> 
 			<origin xyz="0 0 ${wheelRadius}" 
@@ -68,7 +60,7 @@
 	<wheel lr="r" fb="b" Tlr="-1" Tfb="-1"/>
 
 	<!-- Arm models -->
-	<!-- <xacro:include filename="$(find mobile_description)/urdf/arm.xacro" /> -->
+	<xacro:include filename="$(find mobile_description)/urdf/arm.xacro" />
 
 	<!-- Sensor models -->
 	<xacro:include filename="$(find mobile_description)/urdf/sensors.xacro" />

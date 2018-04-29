@@ -40,10 +40,10 @@
 	<transmission name="m_link_1_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="m_joint_1">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="m_joint_1_motor">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
@@ -51,10 +51,10 @@
 	<transmission name="m_link_2_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="m_joint_2">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="m_joint_2_motor">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
@@ -62,10 +62,10 @@
 	<transmission name="m_link_3_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="m_joint_3">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="m_joint_3_motor">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
@@ -73,10 +73,10 @@
 	<transmission name="m_link_4_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="m_joint_4">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="m_joint_4_motor">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
@@ -84,10 +84,10 @@
 	<transmission name="m_link_gripper_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="m_joint_5">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 		</joint>
 		<actuator name="m_joint_5_motor">
-			<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>

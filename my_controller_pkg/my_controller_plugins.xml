@@ -1,0 +1,9 @@
+<library path="lib/libmy_controller_pkg">
+
+    <class name="my_controller_pkg/EffortTestController" type="my_controller_pkg::EffortTestController" base_class_type="controller_interface::ControllerBase">
+        <description>
+            The effort test controller expects a JointEffortCommandInterface type of hardware interface.
+        </description>
+    </class>
+
+</library>
