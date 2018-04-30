@@ -1,14 +1,14 @@
 <library path="lib/libmy_controller_pkg">
 
-    <class name="my_controller_pkg/EffortTestController" type="my_controller_pkg::EffortTestController" base_class_type="controller_interface::ControllerBase">
+    <class name="my_controller_pkg/SimpleController" type="my_controller_pkg::SimpleController" base_class_type="controller_interface::ControllerBase">
         <description>
             The effort test controller expects a JointEffortCommandInterface type of hardware interface.
         </description>
     </class>
 
-    <class name="my_controller_pkg/SimpleController" type="my_controller_pkg::SimpleController" base_class_type="controller_interface::ControllerBase">
+    <class name="my_controller_pkg/ArmController" type="my_controller_pkg::ArmController" base_class_type="controller_interface::ControllerBase">
         <description>
-            The effort test controller expects a JointEffortCommandInterface type of hardware interface.
+            The effort controller expects a JointEffortCommandInterface type of hardware interface.
         </description>
     </class>
 

@@ -15,7 +15,11 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   DIRECTORY msg
   FILES
+    ControllerState.msg
     SimpleControllerCommand.msg
+    ArmControllerCommand.msg
+    WheelControllerCommand.msg
+    DynamicPIDParameters.msg
 )
 
 # add_service_files(

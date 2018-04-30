@@ -63,6 +63,11 @@ namespace my_controller_pkg
 			coeff_Kd = 0.0;
 		}
 
+		if(!n.getParam("clamp_iMax", clamp_iMax)){
+			ROS_INFO("No clamp_iMax coefficient is given for clamping.");
+			clamp_iMax = 0.0;
+		}
+
 		ROS_INFO("coeff_Kp: %lf, coeff_Ki: %lf, coeff_Kd: %lf", coeff_Kp, coeff_Ki, coeff_Kd);
 
 		// Subscribe to command topic 
@@ -100,18 +105,21 @@ namespace my_controller_pkg
 			buffer_current_positions[i] = effortJointHandles[i].getPosition();
 			buffer_current_velocities[i] = effortJointHandles[i].getVelocity();
 
+			// error
 			err[i] = ((double) command.command_data) - buffer_current_positions[i];
-
+			// integral of error
 			err_sum[i] += dt.toSec() * err[i];
+			// limit integral
+			if(clamp_iMax != 0.0){
+				if(err_sum[i] > clamp_iMax / coeff_Ki) 		err_sum[i] = clamp_iMax / coeff_Ki;
+				if(err_sum[i] < -clamp_iMax / coeff_Ki) 	err_sum[i] = -clamp_iMax / coeff_Ki;
+			}
+			// formula
+			double pid = coeff_Kp * err[i] + coeff_Ki * err_sum[i] + coeff_Kd * (err[i]-err_old[i]) / dt.toSec();
 
-			double pd = coeff_Kp * err[i] + coeff_Ki * err_sum[i] + coeff_Kd * (err[i]-err_old[i]) / dt.toSec();
-
-			// ROS_INFO("pd: %lf,  coeff_Kp: %lf,  coeff_Kd: %lf", pd, coeff_Kp, coeff_Kd);
 			err_old[i] = err[i];
 
-			// ROS_INFO("Command: %f", command.command_data);
-			buffer_command_effort[i] = pd;
-			
+			buffer_command_effort[i] = pid;
 			effortJointHandles[i].setCommand(buffer_command_effort[i]);
 		}
 

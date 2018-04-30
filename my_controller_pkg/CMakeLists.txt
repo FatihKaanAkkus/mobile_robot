@@ -20,9 +20,9 @@ catkin_package(
 
 #common commands for building c++ executables and libraries
 add_library(${PROJECT_NAME}
-  src/effort_test_controller.cpp
   src/my_robot_hw.cpp
   src/SimpleController.cpp
+  src/ArmController.cpp
 )
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 

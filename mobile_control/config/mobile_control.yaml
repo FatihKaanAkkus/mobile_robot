@@ -14,9 +14,6 @@ mobile:
     type: effort_controllers/JointEffortController
     joint: wljf
     pid: {p: 100.0, i: 0.1, d: 10.0}
-    # type: my_controller_pkg/SimpleController
-    # joints:
-    #   - wljf
     
   leftBackWheel_controller:
     type: effort_controllers/JointEffortController
@@ -35,56 +32,81 @@ mobile:
 
   # Arm Controllers ---------------------------------------
   joint_1_controller:
-    type: my_controller_pkg/SimpleController
-    joints:
-      - m_joint_1
-    Kp: 100.0
+    type: my_controller_pkg/ArmController
+    joint: m_joint_1
+    Kp: 10.0
     Ki: 0.1
-    Kd: 10.0
-    # type: effort_controllers/JointEffortController
-    # joint: m_joint_1
-    # pid: {p: 100.0, i: 0.1, d: 10.0}
+    Kd: 1.0
+    clamp_iMax: 100.0
+    has_position_limits: true
+    has_velocity_limits: false
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    min_position: -3.1416
+    max_position: 3.1416
+    max_effort: 6.0
 
   joint_2_controller:
-    type: my_controller_pkg/SimpleController
-    joints:
-      - m_joint_2
+    type: my_controller_pkg/ArmController
+    joint: m_joint_2
     Kp: 100.0
-    Ki: 0.1
+    Ki: 5.0
     Kd: 10.0
-    # type: effort_controllers/JointEffortController
-    # joint: m_joint_2
-    # pid: {p: 100.0, i: 0.1, d: 10.0}
+    clamp_iMax: 100.0
+    has_position_limits: true
+    has_velocity_limits: false
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    min_position: -1.5708
+    max_position: 1.5708
+    max_effort: 6.0
 
   joint_3_controller:
-    type: my_controller_pkg/SimpleController
-    joints:
-      - m_joint_3
-    Kp: 25.0
+    type: my_controller_pkg/ArmController
+    joint: m_joint_3
+    Kp: 10.0
     Ki: 0.1
-    Kd: 20.0
-    # type: effort_controllers/JointEffortController
-    # joint: m_joint_3
-    # pid: {p: 100.0, i: 0.1, d: 10.0}
+    Kd: 1.0
+    clamp_iMax: 100.0
+    has_position_limits: true
+    has_velocity_limits: false
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    min_position: -3.1416
+    max_position: 3.1416
+    max_effort: 6.0
 
   joint_4_controller:
-    type: my_controller_pkg/SimpleController
-    joints:
-      - m_joint_4
-    Kp: 25.0
-    Ki: 0.1
-    Kd: 20.0
-    # type: effort_controllers/JointEffortController
-    # joint: m_joint_4
-    # pid: {p: 100.0, i: 0.1, d: 10.0}
+    type: my_controller_pkg/ArmController
+    joint: m_joint_4
+    Kp: 1.0
+    Ki: 0.01
+    Kd: 0.1
+    clamp_iMax: 100.0
+    has_position_limits: true
+    has_velocity_limits: false
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    min_position: -3.1416
+    max_position: 3.1416
+    max_effort: 6.0
 
   joint_gripper_controller:
-    type: my_controller_pkg/SimpleController
-    joints:
-      - m_joint_5
-    Kp: 25.0
-    Ki: 0.1
-    Kd: 20.0
-    # type: effort_controllers/JointEffortController
-    # joint: m_joint_5
-    # pid: {p: 100.0, i: 0.1, d: 10.0}
+    type: my_controller_pkg/ArmController
+    joint: m_joint_5
+    Kp: 0.1
+    Ki: 0.0001
+    Kd: 0.01
+    clamp_iMax: 100.0
+    has_position_limits: true
+    has_velocity_limits: false
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    min_position: -3.1416
+    max_position: 3.1416
+    max_effort: 6.0

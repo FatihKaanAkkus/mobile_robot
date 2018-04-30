@@ -33,6 +33,7 @@ namespace my_controller_pkg
         double coeff_Kp;
         double coeff_Ki;
         double coeff_Kd;
+        double clamp_iMax;
 
         std::vector<double> err;
         std::vector<double> err_old;
