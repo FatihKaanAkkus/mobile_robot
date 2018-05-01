@@ -32,6 +32,19 @@ mobile:
 
   # Arm Controllers ---------------------------------------
   joint_1_controller:
+    # type: my_controller_pkg/WheelController
+    # joint: m_joint_1
+    # Kp: 0.1
+    # Ki: 0.0
+    # Kd: 0.001
+    # clamp_iMax: 100.0
+    # has_position_limits: false
+    # has_velocity_limits: true
+    # has_acceleration_limits: false
+    # has_jerk_limits: false
+    # has_effort_limits: true
+    # max_velocity: 2.0
+    # max_effort: 6.0
     type: my_controller_pkg/ArmController
     joint: m_joint_1
     Kp: 10.0

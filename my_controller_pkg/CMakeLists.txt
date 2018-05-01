@@ -23,6 +23,7 @@ add_library(${PROJECT_NAME}
   src/my_robot_hw.cpp
   src/SimpleController.cpp
   src/ArmController.cpp
+  src/WheelController.cpp
 )
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 

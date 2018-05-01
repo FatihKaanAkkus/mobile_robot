@@ -12,4 +12,10 @@
         </description>
     </class>
 
+    <class name="my_controller_pkg/WheelController" type="my_controller_pkg::WheelController" base_class_type="controller_interface::ControllerBase">
+        <description>
+            The effort controller expects a JointEffortCommandInterface type of hardware interface.
+        </description>
+    </class>
+
 </library>

@@ -171,50 +171,53 @@ namespace my_controller_pkg
 
 		command = cmd_box;
 		
-		// Position limits
-		if(myJointLimits.has_position_limits)
+		// Velocity limits
+		if(myJointLimits.has_velocity_limits)
 		{
-			if(command.command_data > myJointLimits.max_position) 	command.command_data = myJointLimits.max_position;
-			if(command.command_data < myJointLimits.min_position) 	command.command_data = myJointLimits.min_position;
+			if(command.command_data > myJointLimits.max_velocity) 	command.command_data = myJointLimits.max_velocity;
+			if(command.command_data < -myJointLimits.max_velocity) 	command.command_data = -myJointLimits.max_velocity;
 		}
 
-		buffer_current_position = jointHandle.getPosition();
-		buffer_current_velocity = jointHandle.getVelocity();
-		buffer_current_effort = jointHandle.getEffort();
-
-		// error
-		error = ((double) command.command_data) - buffer_current_position;
-		// integral of error
-		error_sum += dt.toSec() * error;
-		// limit integral
-		if(clamp_iMax != 0.0){
-			if(error_sum > clamp_iMax / coeff_Ki) 	error_sum = clamp_iMax / coeff_Ki;
-			if(error_sum < -clamp_iMax / coeff_Ki) 	error_sum = -clamp_iMax / coeff_Ki;
-		}
-
-		// formula
-		double pid = coeff_Kp * error + coeff_Ki * error_sum + coeff_Kd * (error-error_old) / dt.toSec();
-
-		error_old = error;
-
-		buffer_command_effort = pid;
-
-		// Effort limits
-		if(myJointLimits.has_effort_limits)
+		if(dt.toSec() > 0.005)
 		{
-			if(buffer_command_effort > myJointLimits.max_effort) 	buffer_command_effort = myJointLimits.max_effort;
-			if(buffer_command_effort < -myJointLimits.max_effort) 	buffer_command_effort = -myJointLimits.max_effort;
+			buffer_current_position = jointHandle.getPosition();
+			buffer_current_velocity = jointHandle.getVelocity();
+			buffer_current_effort = jointHandle.getEffort();
+
+			// error
+			error = ((double) command.command_data) - buffer_current_velocity;
+			// integral of error
+			error_sum += dt.toSec() * error;
+			// limit integral
+			if(clamp_iMax != 0.0){
+				if(error_sum > clamp_iMax / coeff_Ki) 	error_sum = clamp_iMax / coeff_Ki;
+				if(error_sum < -clamp_iMax / coeff_Ki) 	error_sum = -clamp_iMax / coeff_Ki;
+			}
+
+			// formula
+			double pid = coeff_Kp * error + coeff_Ki * error_sum + coeff_Kd * (error-error_old) / dt.toSec();
+
+			error_old = error;
+
+			buffer_command_effort = pid;
+
+			// Effort limits
+			if(myJointLimits.has_effort_limits)
+			{
+				if(buffer_command_effort > myJointLimits.max_effort) 	buffer_command_effort = myJointLimits.max_effort;
+				if(buffer_command_effort < -myJointLimits.max_effort) 	buffer_command_effort = -myJointLimits.max_effort;
+			}
+
+			jointHandle.setCommand(buffer_command_effort);
+
+			// Publish to topic
+			state.position = buffer_current_position;
+			state.velocity = buffer_current_velocity;
+			state.effort = buffer_current_effort;
+			pub_state.publish(state);
+
+			last_time = time;
 		}
-
-		jointHandle.setCommand(buffer_command_effort);
-
-		// Publish to topic
-		state.position = buffer_current_position;
-		state.velocity = buffer_current_velocity;
-		state.effort = buffer_current_effort;
-		pub_state.publish(state);
-
-		last_time = time;
 	}
 
 	void WheelController::stopping(const ros::Time& time)
