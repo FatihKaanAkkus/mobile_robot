@@ -134,6 +134,13 @@ namespace my_controller_pkg
 			ROS_INFO("Joint: %s >> No 'clamp_iMax' is given for clamping.", jointName.c_str());
 			clamp_iMax = 0.0;
 		}
+		
+		if(!node.getParam("filter_constant", filter_constant)){
+			ROS_INFO("Joint: %s >> No 'filter_constant' is given.", jointName.c_str());
+			filter_constant = 0.0;
+		}
+
+		lowPassFilter.setCutOffFrequency(filter_constant);
 
 		// Subscribe to command topic 
 		const std::string sub_cmd_topic("command");
@@ -152,6 +159,9 @@ namespace my_controller_pkg
 
 	void WheelController::starting(const ros::Time& time)
 	{
+		cmd_box.command_data = 0.0;
+		buffer_command_effort = -0.0001;
+		
 		buffer_current_position = jointHandle.getPosition();
 		buffer_current_velocity = jointHandle.getVelocity();
 		buffer_current_effort = jointHandle.getEffort();
@@ -165,6 +175,7 @@ namespace my_controller_pkg
 	{
 		// Period
 		ros::Duration dt = time - last_time;
+		ros::Duration dt_filter = time - last_time_filter;
 
 		my_controller_msgs::WheelControllerCommand command;
 		my_controller_msgs::ControllerState state;
@@ -178,10 +189,11 @@ namespace my_controller_pkg
 			if(command.command_data < -myJointLimits.max_velocity) 	command.command_data = -myJointLimits.max_velocity;
 		}
 
+		buffer_current_velocity = lowPassFilter.update(jointHandle.getVelocity(), dt_filter.toSec());
+		
 		if(dt.toSec() > 0.005)
 		{
 			buffer_current_position = jointHandle.getPosition();
-			buffer_current_velocity = jointHandle.getVelocity();
 			buffer_current_effort = jointHandle.getEffort();
 
 			// error
@@ -218,6 +230,8 @@ namespace my_controller_pkg
 
 			last_time = time;
 		}
+
+		last_time_filter = time;
 	}
 
 	void WheelController::stopping(const ros::Time& time)

@@ -5,6 +5,7 @@ find_package(catkin REQUIRED COMPONENTS
   controller_interface
   controller_manager
   my_controller_msgs
+  my_filter_pkg
 )
 
 include_directories(include ${Boost_INCLUDE_DIR} ${catkin_INCLUDE_DIRS})
@@ -14,6 +15,7 @@ catkin_package(
     controller_manager 
     controller_interface
     my_controller_msgs
+    my_filter_pkg
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
 )
