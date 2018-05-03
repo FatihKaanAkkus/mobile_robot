@@ -92,7 +92,7 @@
 	</link>
 	<joint
 		name="m_joint_1"
-		type="continuous">
+		type="revolute">
 		<origin
 			xyz="0 0 0.018"
 			rpy="9.5272E-17 2.5487E-17 -1.5708" />
@@ -102,12 +102,12 @@
 			link="m_link_1" />
 		<axis
 			xyz="0 0 1" />
-		<!-- <limit 
-			effort="10.0"
-			velocity="1.0"/> -->
+		<limit 
+			effort="6.0"
+			velocity="1.0"
+			lower="${-3.14}"
+			upper="${3.14}" />
 
-			<!-- lower="${-3.14}"
-			upper="${3.14}" -->
 	</joint>
 	<link
 		name="m_link_2">
@@ -162,7 +162,7 @@
 		<axis
 			xyz="0 0 1" />
 		<limit 
-			effort="10.0"
+			effort="6.0"
 			velocity="1.0"
 			lower="${-3.14}"
 			upper="${3.14}"/>
@@ -220,7 +220,7 @@
 		<axis
 			xyz="0 0 1" />
 		<limit 
-			effort="10.0"
+			effort="6.0"
 			velocity="1.0"
 			lower="${-3.14}"
 			upper="${3.14}"/>
@@ -278,7 +278,7 @@
 		<axis
 			xyz="0 0 1" />
 		<limit 
-			effort="10.0"
+			effort="6.0"
 			velocity="1.0"
 			lower="${-3.14}"
 			upper="${3.14}"/>
@@ -336,7 +336,7 @@
 		<axis
 			xyz="0 0 1" />
 		<limit 
-			effort="10.0"
+			effort="6.0"
 			velocity="1.0"
 			lower="${-3.14}"
 			upper="${3.14}"/>

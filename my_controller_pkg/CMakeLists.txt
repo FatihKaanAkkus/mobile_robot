@@ -26,6 +26,9 @@ add_library(${PROJECT_NAME}
   src/SimpleController.cpp
   src/ArmController.cpp
   src/WheelController.cpp
+  src/SpeedLimiter.cpp
+  src/Odometry.cpp
+  src/MobileController.cpp
 )
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 

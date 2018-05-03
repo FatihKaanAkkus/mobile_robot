@@ -14,6 +14,8 @@
 #include <my_controller_msgs/ArmControllerCommand.h>
 #include <my_controller_msgs/DynamicPIDParameters.h>
 
+#include <my_filter_pkg/LowPassFilter.h>
+
 namespace my_controller_pkg
 {
     // Limit params from controller parameters
@@ -63,6 +65,9 @@ namespace my_controller_pkg
         double error;
         double error_old;
         double error_sum;
+
+        my_filter_pkg::LowPassFilter lowPassFilter;
+        double filter_constant;
         
         ros::NodeHandle node;
         ros::Subscriber sub_cmd;

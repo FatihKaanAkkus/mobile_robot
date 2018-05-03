@@ -134,6 +134,13 @@ namespace my_controller_pkg
 			ROS_INFO("Joint: %s >> No 'clamp_iMax' is given for clamping.", jointName.c_str());
 			clamp_iMax = 0.0;
 		}
+		
+		if(!node.getParam("filter_constant", filter_constant)){
+			ROS_INFO("Joint: %s >> No 'filter_constant' is given.", jointName.c_str());
+			filter_constant = 0.0;
+		}
+
+		lowPassFilter.setCutOffFrequency(filter_constant);
 
 		// Subscribe to command topic 
 		const std::string sub_cmd_topic("command");
@@ -152,6 +159,9 @@ namespace my_controller_pkg
 
 	void ArmController::starting(const ros::Time& time)
 	{
+		cmd_box.command_data = 0.0;
+		buffer_command_effort = -0.0001;
+
 		buffer_current_position = jointHandle.getPosition();
 		buffer_current_velocity = jointHandle.getVelocity();
 		buffer_current_effort = jointHandle.getEffort();
@@ -159,6 +169,8 @@ namespace my_controller_pkg
 		error = 0.0;
 		error_old = 0.0;
 		error_sum = 0.0;
+
+		last_time = time;
 	}
 
 	void ArmController::update(const ros::Time& time, const ros::Duration& period)
@@ -179,7 +191,7 @@ namespace my_controller_pkg
 		}
 
 		buffer_current_position = jointHandle.getPosition();
-		buffer_current_velocity = jointHandle.getVelocity();
+		buffer_current_velocity = lowPassFilter.update(jointHandle.getVelocity(), filter_constant);
 		buffer_current_effort = jointHandle.getEffort();
 
 		// error

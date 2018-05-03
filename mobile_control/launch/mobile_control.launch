@@ -10,10 +10,7 @@
 		output="screen"
 		ns="/mobile" 
 		args="joint_state_controller 
-			leftFrontWheel_controller
-			leftBackWheel_controller
-			rightFrontWheel_controller
-			rightBackWheel_controller
+			skidsteer_controller
 			joint_1_controller
 			joint_2_controller
 			joint_3_controller
@@ -27,5 +24,7 @@
 	</node>
 
 	<!-- <node pkg="my_controller_pkg" type="dummy_app" name="dummy_app"/> -->
+
+	<!-- <node pkg="rqt_console" type="rqt_console" name="rqt_console_node"/> -->
 
 </launch>

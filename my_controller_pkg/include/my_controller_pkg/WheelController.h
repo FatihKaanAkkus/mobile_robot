@@ -6,10 +6,6 @@
 #include <pluginlib/class_list_macros.h>
 #include <ros/node_handle.h>
 
-#include <joint_limits_interface/joint_limits.h>
-#include <joint_limits_interface/joint_limits_interface.h>
-#include <joint_limits_interface/joint_limits_rosparam.h>
-
 #include <my_controller_msgs/ControllerState.h>
 #include <my_controller_msgs/WheelControllerCommand.h>
 #include <my_controller_msgs/DynamicPIDParameters.h>

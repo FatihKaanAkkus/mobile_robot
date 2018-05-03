@@ -160,7 +160,7 @@ namespace my_controller_pkg
 	void WheelController::starting(const ros::Time& time)
 	{
 		cmd_box.command_data = 0.0;
-		buffer_command_effort = -0.0001;
+		buffer_command_effort = 0.0;
 		
 		buffer_current_position = jointHandle.getPosition();
 		buffer_current_velocity = jointHandle.getVelocity();
@@ -169,6 +169,9 @@ namespace my_controller_pkg
 		error = 0.0;
 		error_old = 0.0;
 		error_sum = 0.0;
+
+		last_time = time;
+		last_time_filter = time;
 	}
 
 	void WheelController::update(const ros::Time& time, const ros::Duration& period)
@@ -191,7 +194,7 @@ namespace my_controller_pkg
 
 		buffer_current_velocity = lowPassFilter.update(jointHandle.getVelocity(), dt_filter.toSec());
 		
-		if(dt.toSec() > 0.005)
+		if(dt.toSec() > 0.001)
 		{
 			buffer_current_position = jointHandle.getPosition();
 			buffer_current_effort = jointHandle.getEffort();

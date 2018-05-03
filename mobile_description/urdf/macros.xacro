@@ -76,28 +76,28 @@
 			<axis 
 				xyz="0 0 ${Tlr}" 
 				rpy="0 0 0" />
-			<limit effort="100" velocity="10"/>
+			<limit effort="6.0" velocity="5.0"/>
 			<joint_properties damping="0.0" friction="0.0"/>
 		</joint>
 
 		<gazebo reference="w${lr}${fb}">
-			<mu1 value="1.0"/>
-			<mu2 value="1.0"/>
-			<kp value="10000000.0"/>
-			<kd value="100.0"/>
+			<mu1 value="100.0"/>
+			<mu2 value="100.0"/>
+			<kp value="1.0E+6"/>
+			<kd value="1.0E+0"/>
 			<minDepth>0.001</minDepth>
-			<maxVel>1.0</maxVel>
+			<maxVel>100.0</maxVel>
 			<material>Gazebo/FlatBlack</material>
 		</gazebo>
 
 		<transmission name="${lr}${fb}_trans">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="w${lr}j${fb}">
-				<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+				<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${lr}${fb}Motor">
-				<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-				<mechanicalReduction>2</mechanicalReduction>
+				<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+				<mechanicalReduction>10</mechanicalReduction>
 			</actuator>
 		</transmission>
 
