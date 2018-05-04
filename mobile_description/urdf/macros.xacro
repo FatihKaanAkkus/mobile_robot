@@ -76,7 +76,7 @@
 			<axis 
 				xyz="0 0 ${Tlr}" 
 				rpy="0 0 0" />
-			<limit effort="6.0" velocity="5.0"/>
+			<limit effort="100.0" velocity="100.0"/>
 			<joint_properties damping="0.0" friction="0.0"/>
 		</joint>
 

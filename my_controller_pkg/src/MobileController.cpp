@@ -270,6 +270,8 @@ namespace my_controller_pkg
             left_wheel_joints_[i].setCommand(vel_left);
             right_wheel_joints_[i].setCommand(vel_right);
         }
+
+        ROS_DEBUG_STREAM_NAMED(name_, "vel_left: " << vel_left << ", vel_right: " << vel_right);
     }
 
 	void MobileController::stopping(const ros::Time& time)
