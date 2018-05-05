@@ -1,0 +1,7 @@
+float64[] joint_position
+---
+float64[] joint_position
+float64[] joint_position_error
+---
+float64[] joint_position
+float64[] joint_position_error

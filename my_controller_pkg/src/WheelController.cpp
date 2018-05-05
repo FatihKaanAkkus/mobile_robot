@@ -226,6 +226,7 @@ namespace my_controller_pkg
 			jointHandle.setCommand(buffer_command_effort);
 
 			// Publish to topic
+			state.header.stamp = time;
 			state.position = buffer_current_position;
 			state.velocity = buffer_current_velocity;
 			state.effort = buffer_current_effort;
@@ -238,7 +239,10 @@ namespace my_controller_pkg
 	}
 
 	void WheelController::stopping(const ros::Time& time)
-	{}
+	{
+		const double vel = 0.0;
+		jointHandle.setCommand(vel);
+	}
 
 	void WheelController::sub_cmd_Callback(const my_controller_msgs::WheelControllerCommand& msg)
 	{

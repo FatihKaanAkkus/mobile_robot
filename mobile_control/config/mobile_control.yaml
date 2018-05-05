@@ -115,12 +115,14 @@ mobile:
     Kd: 1.0
     clamp_iMax: 100.0
     has_position_limits: true
-    has_velocity_limits: false
+    has_velocity_limits: true
     has_acceleration_limits: false
     has_jerk_limits: false
     has_effort_limits: true
     min_position: -3.1416
     max_position: 3.1416
+    min_velocity: -1.0
+    max_velocity: 1.0
     max_effort: 6.0
     filter_constant: 100 # [Hz]
 
@@ -132,12 +134,14 @@ mobile:
     Kd: 10.0
     clamp_iMax: 100.0
     has_position_limits: true
-    has_velocity_limits: false
+    has_velocity_limits: true
     has_acceleration_limits: false
     has_jerk_limits: false
     has_effort_limits: true
     min_position: -1.5708
     max_position: 1.5708
+    min_velocity: -1.0
+    max_velocity: 1.0
     max_effort: 6.0
     filter_constant: 100 # [Hz]
 
@@ -149,12 +153,14 @@ mobile:
     Kd: 1.0
     clamp_iMax: 100.0
     has_position_limits: true
-    has_velocity_limits: false
+    has_velocity_limits: true
     has_acceleration_limits: false
     has_jerk_limits: false
     has_effort_limits: true
     min_position: -3.1416
     max_position: 3.1416
+    min_velocity: -1.0
+    max_velocity: 1.0
     max_effort: 6.0
     filter_constant: 100 # [Hz]
 
@@ -166,16 +172,18 @@ mobile:
     Kd: 0.1
     clamp_iMax: 100.0
     has_position_limits: true
-    has_velocity_limits: false
+    has_velocity_limits: true
     has_acceleration_limits: false
     has_jerk_limits: false
     has_effort_limits: true
     min_position: -3.1416
     max_position: 3.1416
+    min_velocity: -1.0
+    max_velocity: 1.0
     max_effort: 6.0
     filter_constant: 100 # [Hz]
 
-  joint_gripper_controller:
+  joint_5_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_5
     Kp: 0.1
@@ -183,11 +191,13 @@ mobile:
     Kd: 0.01
     clamp_iMax: 100.0
     has_position_limits: true
-    has_velocity_limits: false
+    has_velocity_limits: true
     has_acceleration_limits: false
     has_jerk_limits: false
     has_effort_limits: true
     min_position: -3.1416
     max_position: 3.1416
+    min_velocity: -1.0
+    max_velocity: 1.0
     max_effort: 6.0
     filter_constant: 100 # [Hz]

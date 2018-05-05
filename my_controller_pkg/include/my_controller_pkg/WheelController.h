@@ -14,21 +14,6 @@
 
 namespace my_controller_pkg
 {
-    // Limit params from controller parameters
-    typedef struct MyJointLimits_struct {
-        bool has_position_limits;
-        bool has_velocity_limits;
-        bool has_acceleration_limits;
-        bool has_jerk_limits;
-        bool has_effort_limits;
-        double min_position;
-        double max_position;
-        double max_velocity;
-        double max_acceleration;
-        double max_jerk;
-        double max_effort;
-	} MyJointLimits;
-
     class WheelController : public controller_interface::Controller<hardware_interface::EffortJointInterface>
     {
     public:

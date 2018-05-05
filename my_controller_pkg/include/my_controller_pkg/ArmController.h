@@ -19,6 +19,7 @@
 #include <my_controller_msgs/DynamicPIDParameters.h>
 
 #include <my_filter_pkg/LowPassFilter.h>
+#include <my_controller_pkg/SpeedLimiter.h>
 
 namespace my_controller_pkg
 {
@@ -70,28 +71,34 @@ namespace my_controller_pkg
         /**
          * \struct MyJointLimits
          * \brief Structure for joint limits
-         * \var MyJointLimits::has_position_limits     
+         * \var MyJointLimits::has_position_limits
          * If true, applies velocity limits
-         * \var MyJointLimits::has_velocity_limits     
+         * \var MyJointLimits::has_velocity_limits
          * If true, applies acceleration limits
-         * \var MyJointLimits::has_acceleration_limits 
+         * \var MyJointLimits::has_acceleration_limits
          * If true, applies acceleration limits
-         * \var MyJointLimits::has_jerk_limits         
+         * \var MyJointLimits::has_jerk_limits
          * If true, applies jerk limits
-         * \var MyJointLimits::has_effort_limits       
-         * If true applies effor limits
-         * \var MyJointLimits::min_position            
+         * \var MyJointLimits::has_effort_limits
+         * If true applies effort limits
+         * \var MyJointLimits::min_position
          * Minimum position [rad], usually <= 0
-         * \var MyJointLimits::max_position            
+         * \var MyJointLimits::max_position
          * Maximum position [rad], usually => 0
-         * \var MyJointLimits::max_velocity            
-         * Maximum velocity [m/s], applies both directions (+-)
-         * \var MyJointLimits::max_acceleration        
-         * Maximum acceleration [m/s^2], applies both directions (+-)
-         * \var MyJointLimits::max_jerk                
-         * Maximum jerk [m/s^3], applies both directions (+-)
-         * \var MyJointLimits::max_effort              
-         * Maximum effort applied to joints, applies both directions (+-)
+         * \var MyJointLimits::min_velocity
+         * Minimum velocity [m/s], usually <= 0
+         * \var MyJointLimits::max_velocity
+         * Maximum velocity [m/s], usually => 0
+         * \var MyJointLimits::min_acceleration
+         * Minimum acceleration [m/s^2], usually <= 0
+         * \var MyJointLimits::max_acceleration
+         * Maximum acceleration [m/s^2], usually => 0
+         * \var MyJointLimits::min_jerk
+         * Minimum jerk [m/s^3], usually <= 0
+         * \var MyJointLimits::max_jerk
+         * Maximum jerk [m/s^3], usually => 0
+         * \var MyJointLimits::max_effort
+         * Maximum effort applied to joints, usually => 0
          */
         typedef struct {
             bool has_position_limits;
@@ -101,8 +108,11 @@ namespace my_controller_pkg
             bool has_effort_limits;
             double min_position;
             double max_position;
+            double min_velocity;
             double max_velocity;
+            double min_acceleration;
             double max_acceleration;
+            double min_jerk;
             double max_jerk;
             double max_effort;
         } MyJointLimits;
@@ -111,10 +121,10 @@ namespace my_controller_pkg
         MyJointLimits myJointLimits;
 
         /// Current joint states
-        double buffer_command_effort;   // [voltage]
-        double buffer_current_position; // [m]
-        double buffer_current_velocity; // [m/s]
-        double buffer_current_effort;   // [m/s^2]
+        double command_effort_;   // [voltage]
+        double current_position_; // [m]
+        double current_velocity_; // [m/s]
+        double current_effort_;   // [m/s^2]
 
         /// PID controller coefficients
         double coeff_Kp;
@@ -126,6 +136,10 @@ namespace my_controller_pkg
         double error;
         double error_old;
         double error_sum;
+
+        SpeedLimiter limiter;
+        double last_pos1;
+        double last_pos0;
 
         /// Low pass filter to inputs
         my_filter_pkg::LowPassFilter lowPassFilter;

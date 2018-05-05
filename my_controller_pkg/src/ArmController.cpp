@@ -1,5 +1,11 @@
 #include <my_controller_pkg/ArmController.h>
 
+template<typename T>
+T clamp(T x, T min, T max)
+{
+  return std::min(std::max(min, x), max);
+}
+
 namespace my_controller_pkg
 {
 	ArmController::ArmController()
@@ -65,6 +71,10 @@ namespace my_controller_pkg
 					ROS_INFO("Joint: %s >> No 'max_velocity' is given. Assuming as '0.0'.", jointName.c_str());
 					myJointLimits.max_velocity = 0.0;
 				}
+				if(!node.getParam("min_velocity", myJointLimits.min_velocity)){
+					ROS_INFO("Joint: %s >> No 'min_velocity' is given. Assuming as '0.0'.", jointName.c_str());
+					myJointLimits.min_velocity = 0.0;
+				}
 			}
 
 			// Acceleration limits
@@ -80,6 +90,10 @@ namespace my_controller_pkg
 					ROS_INFO("Joint: %s >> No 'max_acceleration' is given. Assuming as '0.0'.", jointName.c_str());
 					myJointLimits.max_acceleration = 0.0;
 				}
+				if(!node.getParam("min_acceleration", myJointLimits.min_acceleration)){
+					ROS_INFO("Joint: %s >> No 'min_acceleration' is given. Assuming as '0.0'.", jointName.c_str());
+					myJointLimits.min_acceleration = 0.0;
+				}
 			}
 
 			// Jerk limits
@@ -94,6 +108,10 @@ namespace my_controller_pkg
 				if(!node.getParam("max_jerk", myJointLimits.max_jerk)){
 					ROS_INFO("Joint: %s >> No 'max_jerk' is given. Assuming as '0.0'.", jointName.c_str());
 					myJointLimits.max_jerk = 0.0;
+				}
+				if(!node.getParam("min_jerk", myJointLimits.min_jerk)){
+					ROS_INFO("Joint: %s >> No 'min_jerk' is given. Assuming as '0.0'.", jointName.c_str());
+					myJointLimits.min_jerk = 0.0;
 				}
 			}
 
@@ -140,6 +158,17 @@ namespace my_controller_pkg
 			filter_constant = 0.0;
 		}
 
+		// Limiter parameters
+        limiter.has_velocity_limits = myJointLimits.has_velocity_limits;
+        limiter.has_acceleration_limits = myJointLimits.has_acceleration_limits;
+        limiter.has_jerk_limits = myJointLimits.has_jerk_limits;
+        limiter.min_velocity = myJointLimits.min_velocity;
+        limiter.max_velocity = myJointLimits.max_velocity;
+        limiter.min_acceleration = myJointLimits.min_acceleration;
+        limiter.max_acceleration = myJointLimits.max_acceleration;
+        limiter.min_jerk = myJointLimits.min_jerk;
+        limiter.max_jerk = myJointLimits.max_jerk;
+
 		lowPassFilter.setCutOffFrequency(filter_constant);
 
 		// Subscribe to command topic 
@@ -160,11 +189,11 @@ namespace my_controller_pkg
 	void ArmController::starting(const ros::Time& time)
 	{
 		cmd_box.command_data = 0.0;
-		buffer_command_effort = -0.0001;
+		command_effort_ = -0.0001;
 
-		buffer_current_position = jointHandle.getPosition();
-		buffer_current_velocity = jointHandle.getVelocity();
-		buffer_current_effort = jointHandle.getEffort();
+		current_position_ = jointHandle.getPosition();
+		current_velocity_ = jointHandle.getVelocity();
+		current_effort_ = jointHandle.getEffort();
 
 		error = 0.0;
 		error_old = 0.0;
@@ -190,12 +219,42 @@ namespace my_controller_pkg
 			if(command.command_data < myJointLimits.min_position) 	command.command_data = myJointLimits.min_position;
 		}
 
-		buffer_current_position = jointHandle.getPosition();
-		buffer_current_velocity = lowPassFilter.update(jointHandle.getVelocity(), filter_constant);
-		buffer_current_effort = jointHandle.getEffort();
+		double set_point = command.command_data;
+
+		current_position_ = lowPassFilter.update(jointHandle.getPosition(), filter_constant);
+		current_velocity_ = jointHandle.getVelocity();
+		current_effort_ = jointHandle.getEffort();
+
+		if(myJointLimits.has_acceleration_limits)
+		{
+			const double dp = set_point - last_pos0;
+			const double dp0 = last_pos0 - last_pos1;
+
+			const double dt2 = period.toSec() * period.toSec();
+
+			const double da_min = myJointLimits.min_acceleration * dt2;
+			const double da_max = myJointLimits.max_acceleration * dt2;
+
+			const double da = clamp(dp - dp0, da_min, da_max); 
+			
+			set_point = last_pos0 + dp0 + da;
+		}
+
+		if(myJointLimits.has_velocity_limits)
+		{
+			const double dp_min = myJointLimits.min_velocity * period.toSec();
+			const double dp_max = myJointLimits.max_velocity * period.toSec();
+
+			const double dp =  clamp(set_point - last_pos0, dp_min, dp_max);
+
+			set_point = last_pos0 + dp;
+		}
+
+		last_pos1 = last_pos0;
+		last_pos0 = set_point;
 
 		// error
-		error = ((double) command.command_data) - buffer_current_position;
+		error = set_point - current_position_;
 		// integral of error
 		error_sum += dt.toSec() * error;
 		// limit integral
@@ -209,28 +268,32 @@ namespace my_controller_pkg
 
 		error_old = error;
 
-		buffer_command_effort = pid;
+		command_effort_ = pid;
 
 		// Effort limits
 		if(myJointLimits.has_effort_limits)
 		{
-			if(buffer_command_effort > myJointLimits.max_effort) 	buffer_command_effort = myJointLimits.max_effort;
-			if(buffer_command_effort < -myJointLimits.max_effort) 	buffer_command_effort = -myJointLimits.max_effort;
+			if(command_effort_ > myJointLimits.max_effort) 	command_effort_ = myJointLimits.max_effort;
+			if(command_effort_ < -myJointLimits.max_effort) 	command_effort_ = -myJointLimits.max_effort;
 		}
 
-		jointHandle.setCommand(buffer_command_effort);
+		jointHandle.setCommand(command_effort_);
 
 		// Publish to topic
-		state.position = buffer_current_position;
-		state.velocity = buffer_current_velocity;
-		state.effort = buffer_current_effort;
+		state.header.stamp = time;
+		state.position = current_position_;
+		state.velocity = current_velocity_;
+		state.effort = current_effort_;
 		pub_state.publish(state);
 
 		last_time = time;
 	}
 
 	void ArmController::stopping(const ros::Time& time)
-	{}
+	{
+		const double vel = 0.0;
+		jointHandle.setCommand(vel);
+	}
 
 	void ArmController::sub_cmd_Callback(const my_controller_msgs::ArmControllerCommand& msg)
 	{

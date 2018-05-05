@@ -136,7 +136,7 @@ namespace my_controller_pkg
         // Setup odometry parameters
         odometry_.setWheelParams(wheel_separation_, wheel_radius_, wheel_radius_);
         ROS_INFO_STREAM_NAMED(name_,
-            "Odometry params : wheel separation: " << wheel_separation_
+            "Odometry params: wheel separation: " << wheel_separation_
             << ", left wheel radius: "  << wheel_radius_
             << ", right wheel radius: " << wheel_radius_);
 

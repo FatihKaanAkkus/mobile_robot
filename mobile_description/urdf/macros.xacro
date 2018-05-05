@@ -81,8 +81,8 @@
 		</joint>
 
 		<gazebo reference="w${lr}${fb}">
-			<mu1 value="100.0"/>
-			<mu2 value="100.0"/>
+			<mu1 value="1.2"/>
+			<mu2 value="1.2"/>
 			<kp value="1.0E+6"/>
 			<kd value="1.0E+0"/>
 			<minDepth>0.001</minDepth>

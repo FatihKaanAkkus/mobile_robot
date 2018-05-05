@@ -28,11 +28,11 @@ add_message_files(
 #         xxx.srv
 # )
 
-# add_action_files(
-#     DIRECTORY action
-#     FILES
-#         xxx.action
-# )
+add_action_files(
+  DIRECTORY action
+  FILES
+    JointPositions.action
+)
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
