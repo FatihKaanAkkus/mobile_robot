@@ -8,7 +8,10 @@ mobile:
   joint_state_controller:
     type: joint_state_controller/JointStateController
     publish_rate: 50 
-    
+  
+  #   MobileController, which we have created, uses velocity joint interface instead of effort joint interface,
+  # but the velocity joint interface and controller created onto the effort joint interface,
+  # just like in the WheelController that we have designed.
   skidsteer_controller:
     type: "my_controller_pkg/MobileController"
     left_wheel: ['wljf', 'wljb']
@@ -22,24 +25,24 @@ mobile:
     base_frame_id: base_footprint
     odom_frame_id: odom
     publish_cmd: true
-    # linear:
-    #   x:
-    #     has_velocity_limits: true
-    #     min_velocity: -0.5
-    #     max_velocity: 1.0
-    #     has_acceleration_limits: true
-    #     min_acceleration: -0.5
-    #     max_acceleration: 1.0
-    #     has_jerk_limits: true
-    #     max_jerk: 5.0
-    # angular:
-    #   z:
-    #     has_velocity_limits: true
-    #     max_velocity: 2.0
-    #     has_acceleration_limits: true
-    #     max_acceleration: 2.0
-    #     has_jerk_limits: true
-    #     max_jerk: 10.0
+    linear:
+      x:
+        has_velocity_limits: true
+        min_velocity: -0.5
+        max_velocity: 1.0
+        has_acceleration_limits: true
+        min_acceleration: -0.5
+        max_acceleration: 1.0
+        has_jerk_limits: true
+        max_jerk: 5.0
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 2.0
+        has_acceleration_limits: true
+        max_acceleration: 2.0
+        has_jerk_limits: true
+        max_jerk: 10.0
 
   # Wheel Controllers ---------------------------------------
   # leftFrontWheel_controller:
@@ -121,8 +124,8 @@ mobile:
     has_effort_limits: true
     min_position: -3.1416
     max_position: 3.1416
-    min_velocity: -1.0
-    max_velocity: 1.0
+    min_velocity: -1.5
+    max_velocity: 1.5
     max_effort: 6.0
     filter_constant: 100 # [Hz]
 
@@ -140,15 +143,15 @@ mobile:
     has_effort_limits: true
     min_position: -1.5708
     max_position: 1.5708
-    min_velocity: -1.0
-    max_velocity: 1.0
+    min_velocity: -1.5
+    max_velocity: 1.5
     max_effort: 6.0
     filter_constant: 100 # [Hz]
 
   joint_3_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_3
-    Kp: 10.0
+    Kp: 15.0
     Ki: 0.1
     Kd: 1.0
     clamp_iMax: 100.0
@@ -159,18 +162,18 @@ mobile:
     has_effort_limits: true
     min_position: -3.1416
     max_position: 3.1416
-    min_velocity: -1.0
-    max_velocity: 1.0
+    min_velocity: -1.5
+    max_velocity: 1.5
     max_effort: 6.0
     filter_constant: 100 # [Hz]
 
   joint_4_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_4
-    Kp: 1.0
+    Kp: 10.0
     Ki: 0.01
     Kd: 0.1
-    clamp_iMax: 100.0
+    clamp_iMax: 25.0
     has_position_limits: true
     has_velocity_limits: true
     has_acceleration_limits: false
@@ -178,17 +181,17 @@ mobile:
     has_effort_limits: true
     min_position: -3.1416
     max_position: 3.1416
-    min_velocity: -1.0
-    max_velocity: 1.0
+    min_velocity: -2.0
+    max_velocity: 2.0
     max_effort: 6.0
     filter_constant: 100 # [Hz]
 
   joint_5_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_5
-    Kp: 0.1
-    Ki: 0.0001
-    Kd: 0.01
+    Kp: 10.0
+    Ki: 0.01
+    Kd: 0.0
     clamp_iMax: 100.0
     has_position_limits: true
     has_velocity_limits: true
@@ -197,7 +200,7 @@ mobile:
     has_effort_limits: true
     min_position: -3.1416
     max_position: 3.1416
-    min_velocity: -1.0
-    max_velocity: 1.0
+    min_velocity: -2.0
+    max_velocity: 2.0
     max_effort: 6.0
     filter_constant: 100 # [Hz]

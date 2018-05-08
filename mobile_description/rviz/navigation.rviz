@@ -135,19 +135,73 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_footprint:
+          Value: true
+        camera_link:
+          Value: true
+        chassis:
+          Value: true
+        hokuyo_link:
+          Value: true
+        m_base:
+          Value: true
+        m_link_1:
+          Value: true
+        m_link_2:
+          Value: true
+        m_link_3:
+          Value: true
+        m_link_4:
+          Value: true
+        m_link_gripper:
+          Value: true
+        map:
+          Value: true
+        odom:
+          Value: true
+        wlb:
+          Value: true
+        wlf:
+          Value: true
+        wrb:
+          Value: true
+        wrf:
+          Value: true
       Marker Scale: 0.5
       Name: TF
       Show Arrows: true
       Show Axes: true
-      Show Names: false
+      Show Names: true
       Tree:
-        {}
+        map:
+          odom:
+            base_footprint:
+              chassis:
+                camera_link:
+                  {}
+                hokuyo_link:
+                  {}
+                m_base:
+                  m_link_1:
+                    m_link_2:
+                      m_link_3:
+                        m_link_4:
+                          m_link_gripper:
+                            {}
+                wlb:
+                  {}
+                wlf:
+                  {}
+                wrb:
+                  {}
+                wrf:
+                  {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Class: rviz/Group
       Displays:
         - Alpha: 1
@@ -370,7 +424,7 @@ Visualization Manager:
           Topic: /move_base/DWAPlannerROS/local_plan
           Unreliable: false
           Value: true
-      Enabled: false
+      Enabled: true
       Name: dwa_local_planner
   Enabled: true
   Global Options:
@@ -397,25 +451,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 17.113203
+      Distance: 5.24687099
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -0.620670319
+        Y: -0.606690705
+        Z: -0.546975613
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 1.56979632
+      Pitch: 0.604796767
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.14159989
+      Yaw: 4.67161989
     Saved: ~
 Window Geometry:
   Camera:

@@ -6,13 +6,6 @@
 
 #include <my_controller_pkg/MobileController.h>
 
-static double euclideanOfVectors(const urdf::Vector3& vec1, const urdf::Vector3& vec2)
-{
-  return std::sqrt(std::pow(vec1.x-vec2.x,2) +
-                   std::pow(vec1.y-vec2.y,2) +
-                   std::pow(vec1.z-vec2.z,2));
-}
-
 namespace my_controller_pkg
 {
 	MobileController::MobileController():
