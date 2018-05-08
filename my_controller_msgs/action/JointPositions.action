@@ -2,6 +2,10 @@ float64[] joint_position
 ---
 float64[] joint_position
 float64[] joint_position_error
+bool reached_goal
+bool stalled
 ---
 float64[] joint_position
 float64[] joint_position_error
+bool reached_goal
+bool stalled

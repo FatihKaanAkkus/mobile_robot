@@ -48,11 +48,11 @@ namespace mobile_control
         std::vector<my_controller_msgs::ArmControllerCommand> last_goal_commands_;
 
         /// Current state related
-        double min_error_seen_;
         double goal_threshold_;
         double stall_velocity_threshold_;
         double stall_timeout_;
-        ros::Time last_movement_time_;
+        std::vector<ros::Time> last_movement_time_;
+        std::vector<bool> goal_reached_check_;
 
         void watchdog(const ros::TimerEvent &e);
         /// Goal command callback
@@ -63,7 +63,12 @@ namespace mobile_control
         /// Current controller state related
         std::vector<my_controller_msgs::ControllerStateConstPtr> last_controller_state_;
 
-        void actionStateCallback(void);
+        /**
+         * \brief State callback function for action complete and in process.
+         * \param msg ControllerState message pointer
+         * \param i Controller index in action class definitions
+         */
+        void actionStateCallback(int controller_index);
 
         /// Controller state callback functions for each joint controller
         void controllerState_Callback_0(const my_controller_msgs::ControllerStateConstPtr& msg);

@@ -51,7 +51,7 @@ mobile:
   #   Kp: 1.0
   #   Ki: 0.0025
   #   Kd: 0.0
-  #   clamp_iMax: 20.0
+  #   iMax: 20.0
   #   has_position_limits: false
   #   has_velocity_limits: true
   #   has_acceleration_limits: false
@@ -67,7 +67,7 @@ mobile:
   #   Kp: 1.0
   #   Ki: 0.0025
   #   Kd: 0.0
-  #   clamp_iMax: 20.0
+  #   iMax: 20.0
   #   has_position_limits: false
   #   has_velocity_limits: true
   #   has_acceleration_limits: false
@@ -83,7 +83,7 @@ mobile:
   #   Kp: 1.0
   #   Ki: 0.0025
   #   Kd: 0.0
-  #   clamp_iMax: 20.0
+  #   iMax: 20.0
   #   has_position_limits: false
   #   has_velocity_limits: true
   #   has_acceleration_limits: false
@@ -99,7 +99,7 @@ mobile:
   #   Kp: 1.0
   #   Ki: 0.0025
   #   Kd: 0.0
-  #   clamp_iMax: 20.0
+  #   iMax: 20.0
   #   has_position_limits: false
   #   has_velocity_limits: true
   #   has_acceleration_limits: false
@@ -113,10 +113,11 @@ mobile:
   joint_1_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_1
-    Kp: 10.0
-    Ki: 0.1
-    Kd: 1.0
-    clamp_iMax: 100.0
+    Kp: 65.0
+    Ki: 0.065
+    Kd: 6.5
+    iMax: 100.0
+    filter_constant: 100 # [Hz]
     has_position_limits: true
     has_velocity_limits: true
     has_acceleration_limits: false
@@ -127,15 +128,15 @@ mobile:
     min_velocity: -1.5
     max_velocity: 1.5
     max_effort: 6.0
-    filter_constant: 100 # [Hz]
 
   joint_2_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_2
-    Kp: 100.0
-    Ki: 2.5
-    Kd: 10.0
-    clamp_iMax: 100.0
+    Kp: 65.0
+    Ki: 0.065
+    Kd: 6.5
+    iMax: 100.0
+    filter_constant: 100 # [Hz]
     has_position_limits: true
     has_velocity_limits: true
     has_acceleration_limits: false
@@ -146,15 +147,15 @@ mobile:
     min_velocity: -1.5
     max_velocity: 1.5
     max_effort: 6.0
-    filter_constant: 100 # [Hz]
 
   joint_3_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_3
-    Kp: 15.0
-    Ki: 0.1
-    Kd: 1.0
-    clamp_iMax: 100.0
+    Kp: 50.0
+    Ki: 0.05
+    Kd: 5.0
+    iMax: 100.0
+    filter_constant: 100 # [Hz]
     has_position_limits: true
     has_velocity_limits: true
     has_acceleration_limits: false
@@ -165,15 +166,15 @@ mobile:
     min_velocity: -1.5
     max_velocity: 1.5
     max_effort: 6.0
-    filter_constant: 100 # [Hz]
 
   joint_4_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_4
-    Kp: 10.0
-    Ki: 0.01
-    Kd: 0.1
-    clamp_iMax: 25.0
+    Kp: 2.0
+    Ki: 0.002
+    Kd: 0.2
+    iMax: 100.0
+    filter_constant: 100 # [Hz]
     has_position_limits: true
     has_velocity_limits: true
     has_acceleration_limits: false
@@ -184,15 +185,15 @@ mobile:
     min_velocity: -2.0
     max_velocity: 2.0
     max_effort: 6.0
-    filter_constant: 100 # [Hz]
 
   joint_5_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_5
-    Kp: 10.0
-    Ki: 0.01
-    Kd: 0.0
-    clamp_iMax: 100.0
+    Kp: 2.0
+    Ki: 0.002
+    Kd: 0.2
+    iMax: 100.0
+    filter_constant: 100 # [Hz]
     has_position_limits: true
     has_velocity_limits: true
     has_acceleration_limits: false
@@ -203,4 +204,3 @@ mobile:
     min_velocity: -2.0
     max_velocity: 2.0
     max_effort: 6.0
-    filter_constant: 100 # [Hz]

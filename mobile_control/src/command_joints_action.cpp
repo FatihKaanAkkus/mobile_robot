@@ -24,6 +24,8 @@ namespace mobile_control
         pub_controller_command_.resize(number_of_joints_);
         sub_controller_state_.resize(number_of_joints_);
         last_goal_commands_.resize(number_of_joints_);
+        last_movement_time_.resize(number_of_joints_);
+        goal_reached_check_.resize(number_of_joints_, false);
         last_controller_state_.resize(number_of_joints_);
 
         // Create publishers
@@ -94,15 +96,16 @@ namespace mobile_control
         active_goal_ = gh;
         has_active_goal_ = true;
         goal_received_ = ros::Time::now();
-        min_error_seen_ = 1e10;
 
         for(unsigned int i=0; i<number_of_joints_; ++i)
         {
             last_goal_commands_[i].command_data = active_goal_.getGoal()->joint_position[i];
             pub_controller_command_[i].publish(last_goal_commands_[i]);
+            last_movement_time_[i] = ros::Time::now();
+            goal_reached_check_[i] = false;
         }
 
-        last_movement_time_ = ros::Time::now();
+        ROS_INFO_NAMED(node_.getNamespace(), "command_joints_action got a new goal.");
     }
 
     void CommandJoints::cancel_Callback(GoalHandle gh)
@@ -123,14 +126,26 @@ namespace mobile_control
         }
     }
 
-    void CommandJoints::actionStateCallback(void)
+    void CommandJoints::actionStateCallback(int controller_index)
     {
         ros::Time now = ros::Time::now();
 
-        if(!has_active_goal_)
-            return;
+        // Ensure the controller is tracking setpoint
+        if(fabs(last_controller_state_[controller_index]->position - last_goal_commands_[controller_index].command_data) > goal_threshold_)
+        {
+            if(now - goal_received_ < ros::Duration(1.0))
+            {
+                return;
+            }
+        //     else 
+        //     {
+        //         ROS_ERROR("Cancelling goal: Controller [index: %d] is trying to achieve a different setpoint.", controller_index);
+        //         active_goal_.setCanceled();
+        //         has_active_goal_ = false;
+        //     }
+        }
         
-        // Last positions
+        // Last positions of all controllers
         std::vector<double> positions;
         std::vector<double> position_errors;
         for(unsigned int i=0; i<number_of_joints_; ++i)
@@ -143,6 +158,61 @@ namespace mobile_control
         my_controller_msgs::JointPositionsFeedback feedback;
         feedback.joint_position = positions;
         feedback.joint_position_error = position_errors;
+        feedback.reached_goal = false;
+        feedback.stalled = false;
+
+        // Result variables
+        my_controller_msgs::JointPositionsResult result;
+        result.joint_position = positions;
+        result.joint_position_error = position_errors;
+        result.reached_goal = false;
+        result.stalled = false;
+
+        if(!goal_reached_check_[controller_index] && fabs(last_controller_state_[controller_index]->position - last_goal_commands_[controller_index].command_data) < goal_threshold_)
+        {
+            goal_reached_check_[controller_index] = true;
+
+            // Check if every joint reached their goals
+            for(unsigned int i=0; i<number_of_joints_; ++i)
+            {
+                if(goal_reached_check_[i] == true)
+                {
+                    result.reached_goal = true;
+                }    
+                else
+                {
+                    result.reached_goal = false;
+                    break;
+                }
+            }
+            
+            // Only happens in last joint state check
+            if(result.reached_goal)
+            {
+                active_goal_.setSucceeded(result);
+
+                ROS_INFO_NAMED(node_.getNamespace(), "command_joints_action has succeded.");
+
+                has_active_goal_ = false;
+            }
+        }
+        else if(!goal_reached_check_[controller_index])
+        {
+            if(fabs(last_controller_state_[controller_index]->velocity) > stall_velocity_threshold_)
+            {
+                last_movement_time_[controller_index] = ros::Time::now();
+            }
+            else if((ros::Time::now() - last_movement_time_[controller_index]).toSec() > stall_timeout_)
+            {
+                feedback.stalled = true;
+
+                result.stalled = true;
+                active_goal_.setAborted(result);
+                has_active_goal_ = false;
+
+                ROS_INFO_NAMED(node_.getNamespace(), "command_joints_action has stalled.");
+            }
+        }
 
         active_goal_.publishFeedback(feedback);
     }
@@ -150,30 +220,50 @@ namespace mobile_control
     void CommandJoints::controllerState_Callback_0(const my_controller_msgs::ControllerStateConstPtr& msg)
     {
         last_controller_state_[0] = msg;
-        actionStateCallback();
+
+        if(!has_active_goal_)
+            return;
+        
+        actionStateCallback(0);
     }
     
     void CommandJoints::controllerState_Callback_1(const my_controller_msgs::ControllerStateConstPtr& msg)
     {
         last_controller_state_[1] = msg;
-        actionStateCallback();
+
+        if(!has_active_goal_)
+            return;
+        
+        actionStateCallback(1);
     }
     
     void CommandJoints::controllerState_Callback_2(const my_controller_msgs::ControllerStateConstPtr& msg)
     {
         last_controller_state_[2] = msg;
-        actionStateCallback();
+
+        if(!has_active_goal_)
+            return;
+        
+        actionStateCallback(2);
     }
     
     void CommandJoints::controllerState_Callback_3(const my_controller_msgs::ControllerStateConstPtr& msg)
     {
         last_controller_state_[3] = msg;
-        actionStateCallback();
+
+        if(!has_active_goal_)
+            return;
+        
+        actionStateCallback(3);
     }
     
     void CommandJoints::controllerState_Callback_4(const my_controller_msgs::ControllerStateConstPtr& msg)
     {
         last_controller_state_[4] = msg;
-        actionStateCallback();
+
+        if(!has_active_goal_)
+            return;
+        
+        actionStateCallback(4);
     }
 }

@@ -60,13 +60,13 @@ namespace my_controller_pkg
         void stopping(const ros::Time& time);
 
         /// Holds latest command
-        my_controller_msgs::ArmControllerCommand cmd_box;
+        my_controller_msgs::ArmControllerCommand cmd_box_;
 
     private:
         /// Holds joint's name
-        std::string jointName;
+        std::string jointName_;
         /// Interface for joint handling
-        hardware_interface::JointHandle jointHandle;
+        hardware_interface::JointHandle jointHandle_;
 
         /**
          * \struct MyJointLimits
@@ -118,7 +118,7 @@ namespace my_controller_pkg
         } MyJointLimits;
 
         /// Joint limits
-        MyJointLimits myJointLimits;
+        MyJointLimits jointLimits_;
 
         /// Current joint states
         double command_effort_;   // [voltage]
@@ -127,24 +127,24 @@ namespace my_controller_pkg
         double current_effort_;   // [m/s^2]
 
         /// PID controller coefficients
-        double coeff_Kp;
-        double coeff_Ki;
-        double coeff_Kd;
-        double clamp_iMax;
+        double P_;
+        double I_;
+        double D_;
+        double iMax_;
 
         /// PID controller variables used for calculation
         double error;
         double error_old;
         double error_sum;
 
-        SpeedLimiter limiter;
+        /// Limiter
         double last_pos1;
         double last_pos0;
 
         /// Low pass filter to inputs
         my_filter_pkg::LowPassFilter lowPassFilter;
         /// Filter cut-off frequency
-        double filter_constant; // [Hz]
+        double filter_constant_; // [Hz]
         
         /// Node handler for controller
         ros::NodeHandle node;
@@ -157,6 +157,7 @@ namespace my_controller_pkg
 
         /// Last used time in calculations
         ros::Time last_time;
+        ros::Time last_time_filter;
 
         /// Subscriber and publisher callbacks
         void sub_cmd_Callback(const my_controller_msgs::ArmControllerCommand& msg);

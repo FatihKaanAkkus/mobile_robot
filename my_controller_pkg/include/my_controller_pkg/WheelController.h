@@ -51,13 +51,13 @@ namespace my_controller_pkg
         void stopping(const ros::Time& time);
 
         /// Holds latest command
-        my_controller_msgs::WheelControllerCommand cmd_box;
+        my_controller_msgs::WheelControllerCommand cmd_box_;
 
     private:
         /// Holds joint's name
-		std::string jointName;
+		std::string jointName_;
         /// Interface for joint handling
-        hardware_interface::JointHandle jointHandle;
+        hardware_interface::JointHandle jointHandle_;
 
         /**
          * \struct MyJointLimits
@@ -100,19 +100,19 @@ namespace my_controller_pkg
         } MyJointLimits;
 
         /// Joint limits
-        MyJointLimits myJointLimits;
+        MyJointLimits jointLimits_;
 
         /// Current joint states
-        double buffer_command_effort;   // [voltage]
-        double buffer_current_position; // [m]
-        double buffer_current_velocity; // [m/s]
-        double buffer_current_effort;   // [m/s^2]
+        double command_effort_;   // [voltage]
+        double current_position_; // [m]
+        double current_velocity_; // [m/s]
+        double current_effort_;   // [m/s^2]
 
         /// PID controller coefficients
-        double coeff_Kp;
-        double coeff_Ki;
-        double coeff_Kd;
-        double clamp_iMax;
+        double P_;
+        double I_;
+        double D_;
+        double iMax_;
 
         /// PID controller variables used for calculation
         double error;
@@ -122,7 +122,7 @@ namespace my_controller_pkg
         /// Low pass filter to inputs
         my_filter_pkg::LowPassFilter lowPassFilter;
         /// Filter cut-off frequency
-        double filter_constant; // [Hz]
+        double filter_constant_; // [Hz]
         
         ros::NodeHandle node;
         ros::Subscriber sub_cmd;
