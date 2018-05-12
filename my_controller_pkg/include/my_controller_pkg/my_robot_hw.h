@@ -10,28 +10,41 @@
 
 namespace my_controller_pkg
 {
-	class MyRobotHW : public hardware_interface::RobotHW
-	{
-		public:
-			MyRobotHW();
+    class MyRobotHW : public hardware_interface::RobotHW
+    {
+        public:
+            /**
+             * \brief Constructor
+             */
+            MyRobotHW();
 
-			void read();
-			void write();
+            /**
+             * \brief Read from hardware
+             */
+            void read();
+            /**
+             * \brief Read to hardware
+             */
+            void write();
 
-		protected:
+        protected:
 
-		private:
-			hardware_interface::JointStateInterface    js_interface_;
-			hardware_interface::EffortJointInterface   ej_interface_;
-			hardware_interface::VelocityJointInterface vj_interface_;
+        private:
+            /// Interface vector for states
+            hardware_interface::JointStateInterface    js_interface_;
+            /// Interface vector for effort joints
+            hardware_interface::EffortJointInterface   ej_interface_;
+            /// Interface vector for velocity joints
+            hardware_interface::VelocityJointInterface vj_interface_;
 
-			std::vector<double> joint_effort_command_;
-			std::vector<double> joint_velocity_command_;
-			std::vector<double> joint_position_;
-			std::vector<double> joint_velocity_;
-			std::vector<double> joint_effort_;
-			std::vector<std::string> joint_name_;
-	};
+            /// Joints related
+            std::vector<double> joint_effort_command_;
+            std::vector<double> joint_velocity_command_;
+            std::vector<double> joint_position_;
+            std::vector<double> joint_velocity_;
+            std::vector<double> joint_effort_;
+            std::vector<std::string> joint_name_;
+    };
 }
 
 #endif

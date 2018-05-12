@@ -1,95 +1,129 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<gazebo reference="m_base">
-		<mu1 value="1.10"/>
-		<mu2 value="1.10"/>
-		<material>Gazebo/Red</material>
-	</gazebo>
+    <gazebo reference="m_base">
+        <mu1 value="1.10"/>
+        <mu2 value="1.10"/>
+        <material>Gazebo/Red</material>
+    </gazebo>
 
-	<gazebo reference="m_link_1">
-		<mu1 value="1.10"/>
-		<mu2 value="1.10"/>
-		<material>Gazebo/Green</material>
-	</gazebo>
+    <gazebo reference="m_link_1">
+        <mu1 value="1.10"/>
+        <mu2 value="1.10"/>
+        <material>Gazebo/Green</material>
+    </gazebo>
 
-	<gazebo reference="m_link_2">
-		<mu1 value="1.10"/>
-		<mu2 value="1.10"/>
-		<material>Gazebo/Blue</material>
-	</gazebo>
+    <gazebo reference="m_link_2">
+        <mu1 value="1.10"/>
+        <mu2 value="1.10"/>
+        <material>Gazebo/Blue</material>
+    </gazebo>
 
-	<gazebo reference="m_link_3">
-		<mu1 value="1.10"/>
-		<mu2 value="1.10"/>
-		<material>Gazebo/Green</material>
-	</gazebo>
+    <gazebo reference="m_link_3">
+        <mu1 value="1.10"/>
+        <mu2 value="1.10"/>
+        <material>Gazebo/Green</material>
+    </gazebo>
 
-	<gazebo reference="m_link_4">
-		<mu1 value="1.10"/>
-		<mu2 value="1.10"/>
-		<material>Gazebo/Blue</material>
-	</gazebo>
-	
-	<gazebo reference="m_link_gripper">
-		<mu1 value="1.10"/>
-		<mu2 value="1.10"/>
-		<material>Gazebo/Green</material>
-	</gazebo>
+    <gazebo reference="m_link_4">
+        <mu1 value="1.10"/>
+        <mu2 value="1.10"/>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+    
+    <gazebo reference="m_link_gripper">
+        <mu1 value="1.10"/>
+        <mu2 value="1.10"/>
+        <material>Gazebo/Orange</material>
+    </gazebo>
+    
+    <gazebo reference="gripper_finger_left">
+        <mu1 value="1.10"/>
+        <mu2 value="1.10"/>
+        <material>Gazebo/Orange</material>
+    </gazebo>
+    
+    <gazebo reference="gripper_finger_right">
+        <mu1 value="1.10"/>
+        <mu2 value="1.10"/>
+        <material>Gazebo/Orange</material>
+    </gazebo>
 
-	<transmission name="m_link_1_trans">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="m_joint_1">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="m_joint_1_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
+    <transmission name="m_link_1_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="m_joint_1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="m_joint_1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 
-	<transmission name="m_link_2_trans">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="m_joint_2">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="m_joint_2_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
+    <transmission name="m_link_2_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="m_joint_2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="m_joint_2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 
-	<transmission name="m_link_3_trans">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="m_joint_3">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="m_joint_3_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
+    <transmission name="m_link_3_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="m_joint_3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="m_joint_3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 
-	<transmission name="m_link_4_trans">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="m_joint_4">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="m_joint_4_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
+    <transmission name="m_link_4_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="m_joint_4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="m_joint_4_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 
-	<transmission name="m_link_gripper_trans">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="m_joint_5">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="m_joint_5_motor">
-			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
+    <transmission name="m_link_gripper_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="m_joint_5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="m_joint_5_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="m_link_gripper_finger_1_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="finger_joint_1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="finger_joint_1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>10</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="m_link_gripper_finger_2_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="finger_joint_2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="finger_joint_2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>10</mechanicalReduction>
+        </actuator>
+    </transmission>
 
 </robot>

@@ -73,6 +73,16 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        gripper_finger_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_finger_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         hokuyo_link:
           Alpha: 1
           Show Axes: false
@@ -145,6 +155,10 @@ Visualization Manager:
           Value: true
         chassis:
           Value: true
+        gripper_finger_left:
+          Value: true
+        gripper_finger_right:
+          Value: true
         hokuyo_link:
           Value: true
         m_base:
@@ -177,29 +191,34 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
+        base_footprint:
+          chassis:
+            camera_link:
+              {}
+            hokuyo_link:
+              {}
+            m_base:
+              m_link_1:
+                m_link_2:
+                  m_link_3:
+                    m_link_4:
+                      m_link_gripper:
+                        gripper_finger_left:
+                          {}
+                        gripper_finger_right:
+                          {}
+            wlb:
+              {}
+            wlf:
+              {}
+            wrb:
+              {}
+            wrf:
+              {}
         map:
-          odom:
-            base_footprint:
-              chassis:
-                camera_link:
-                  {}
-                hokuyo_link:
-                  {}
-                m_base:
-                  m_link_1:
-                    m_link_2:
-                      m_link_3:
-                        m_link_4:
-                          m_link_gripper:
-                            {}
-                wlb:
-                  {}
-                wlf:
-                  {}
-                wrb:
-                  {}
-                wrf:
-                  {}
+          {}
+        odom:
+          {}
       Update Interval: 0
       Value: true
     - Class: rviz/Group
@@ -451,25 +470,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 5.24687099
+      Distance: 7.05759192
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.620670319
-        Y: -0.606690705
-        Z: -0.546975613
+        X: -0.0291960109
+        Y: -0.316280901
+        Z: 0.43684274
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.604796767
+      Pitch: 0.589797139
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.67161989
+      Yaw: 3.63661242
     Saved: ~
 Window Geometry:
   Camera:

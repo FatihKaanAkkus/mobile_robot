@@ -1,34 +1,36 @@
 <launch>
 
-	<!-- Joint controllers parameters file -->
-	<rosparam file="$(find mobile_control)/config/mobile_control.yaml" command="load"/>
+    <!-- Joint controllers parameters file -->
+    <rosparam file="$(find mobile_control)/config/mobile_control.yaml" command="load"/>
 
-	<node name="controller_spawner"
-		pkg="controller_manager"
-		type="spawner" 
-		respawn="false"
-		output="screen"
-		ns="/mobile" 
-		args="joint_state_controller 
-			skidsteer_controller
-			joint_1_controller
-			joint_2_controller
-			joint_3_controller
-			joint_4_controller
-			joint_5_controller"
-	/>
-	
-	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
-		<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find mobile_description)/urdf/mobile.xacro'" />
-		<remap from="/joint_states" to="/mobile/joint_states" />
-	</node>
+    <node name="controller_spawner"
+        pkg="controller_manager"
+        type="spawner" 
+        respawn="false"
+        output="screen"
+        ns="/mobile" 
+        args="joint_state_controller 
+            skidsteer_controller
+            joint_1_controller
+            joint_2_controller
+            joint_3_controller
+            joint_4_controller
+            joint_5_controller
+            gripper_finger_left_controller
+            gripper_finger_right_controller"
+    />
+    
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find mobile_description)/urdf/mobile.xacro'" />
+        <remap from="/joint_states" to="/mobile/joint_states" />
+    </node>
 
-	<!-- <node pkg="my_controller_pkg" type="dummy_app" name="dummy_app"/> -->
+    <!-- <node pkg="my_controller_pkg" type="dummy_app" name="dummy_app"/> -->
 
-	<!-- <node pkg="rqt_console" type="rqt_console" name="rqt_console_node"/> -->
+    <!-- <node pkg="rqt_console" type="rqt_console" name="rqt_console_node"/> -->
 
-	<node ns="mobile" pkg="mobile_control" type="command_joints_app" name="command_joints_app" output="screen"/>
+    <node ns="mobile" pkg="mobile_control" type="command_joints_app" name="command_joints_app" output="screen"/>
 
-	<node pkg="rqt_gui" type="rqt_gui" name="qrt_gui_node"/>
+    <node pkg="rqt_gui" type="rqt_gui" name="qrt_gui_node"/>
 
 </launch>

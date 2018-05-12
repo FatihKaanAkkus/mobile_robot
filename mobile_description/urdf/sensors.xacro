@@ -61,9 +61,7 @@
       <origin xyz="0 0 0" 
               rpy="0 0 0"/>
       <geometry>
-        <box size="${hokuyoLength} 
-                   ${hokuyoWidth} 
-                   ${hokuyoHeight}"/>
+        <mesh filename="package://mobile_description/meshes/hokuyo.dae"/>
       </geometry>
     </collision>
 

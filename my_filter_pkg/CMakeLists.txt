@@ -99,8 +99,8 @@ find_package(catkin REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-	INCLUDE_DIRS include
-	LIBRARIES my_filter_pkg
+    INCLUDE_DIRS include
+    LIBRARIES my_filter_pkg
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
 )
@@ -112,14 +112,14 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-	include
-	${catkin_INCLUDE_DIRS}
+    include
+    ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-	src/LowPassFilter.cpp
-	src/ExpAveragingFilter.cpp
+    src/LowPassFilter.cpp
+    src/ExpAveragingFilter.cpp
 )
 
 ## Add cmake target dependencies of the library
@@ -144,7 +144,7 @@ add_library(${PROJECT_NAME}
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}
-	${catkin_LIBRARIES}
+    ${catkin_LIBRARIES}
 )
 
 #############
@@ -170,9 +170,9 @@ target_link_libraries(${PROJECT_NAME}
 
 ## Mark cpp header files for installation
 install(DIRECTORY include/${PROJECT_NAME}/
-	DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-	FILES_MATCHING PATTERN "*.h"
-	PATTERN ".svn" EXCLUDE
+    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+    FILES_MATCHING PATTERN "*.h"
+    PATTERN ".svn" EXCLUDE
 )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)

@@ -8,7 +8,7 @@
 
 namespace my_controller_pkg
 {
-	MobileController::MobileController():
+    MobileController::MobileController():
         open_loop_(false),
         wheel_separation_(0.0),
         wheel_radius_(0.0),
@@ -18,12 +18,12 @@ namespace my_controller_pkg
         enable_odom_tf_(true),
         wheel_joints_size_(0),
         publish_cmd_(false)
-	{}
+    {}
 
-	MobileController::~MobileController()
-	{
-		sub_cmd_.shutdown();
-	}
+    MobileController::~MobileController()
+    {
+        sub_cmd_.shutdown();
+    }
 
     bool MobileController::init(hardware_interface::VelocityJointInterface* hw, ros::NodeHandle& root_nh, ros::NodeHandle &controller_nh)
     {
@@ -138,7 +138,7 @@ namespace my_controller_pkg
         // Limited velocity publisher
         if(publish_cmd_)
         {
-		    cmd_vel_pub_ = controller_nh.advertise<geometry_msgs::TwistStamped>("cmd_vel_out", (uint32_t) 100);
+            cmd_vel_pub_ = controller_nh.advertise<geometry_msgs::TwistStamped>("cmd_vel_out", (uint32_t) 100);
         }
 
         // Joint handles
@@ -267,8 +267,8 @@ namespace my_controller_pkg
         ROS_DEBUG_STREAM_NAMED(name_, "vel_left: " << vel_left << ", vel_right: " << vel_right);
     }
 
-	void MobileController::stopping(const ros::Time& time)
-	{
+    void MobileController::stopping(const ros::Time& time)
+    {
         brake();
     }
 
@@ -282,8 +282,8 @@ namespace my_controller_pkg
         }
     }
 
-	void MobileController::cmd_vel_Callback(const geometry_msgs::Twist& msg)
-	{
+    void MobileController::cmd_vel_Callback(const geometry_msgs::Twist& msg)
+    {
         if(isRunning())
         {
             command_struct_.lin = (double) msg.linear.x;
@@ -302,7 +302,7 @@ namespace my_controller_pkg
         {
             ROS_ERROR_STREAM_NAMED(name_, "Can't accept new commands. Controller is not running.");
         }
-	}
+    }
     
     void MobileController::setOdomPubFields(ros::NodeHandle& root_nh, ros::NodeHandle& controller_nh)
     {

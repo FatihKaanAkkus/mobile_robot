@@ -1,41 +1,41 @@
 <launch>
 
-	<arg name="world" default="$(find mobile_gazebo)/worlds/empty.world"/>
-	<arg name="paused" default="true"/>
-	<arg name="use_sim_time" default="true"/>
-	<arg name="gui" default="true"/>
-	<arg name="headless" default="false"/>
-	<arg name="debug" default="false"/>
+    <arg name="world" default="$(find mobile_gazebo)/worlds/empty.world"/>
+    <arg name="paused" default="true"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
 
-	<arg name="model" default="$(find mobile_description)/urdf/mobile.xacro"/>
-	
-	<arg name="rvizconfig" default="$(find mobile_description)/rviz/mobile.rviz" />
+    <arg name="model" default="$(find mobile_description)/urdf/mobile.xacro"/>
+    
+    <arg name="rvizconfig" default="$(find mobile_description)/rviz/mobile.rviz" />
 
-	<param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
 
-	<!-- Launch gazebo itself! -->
-	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<arg name="world_name" value="$(arg world)"/>
-		<arg name="debug" value="$(arg debug)" />
-		<arg name="gui" value="$(arg gui)" />
-		<arg name="paused" value="$(arg paused)"/>
-		<arg name="use_sim_time" value="$(arg use_sim_time)"/>
-		<arg name="headless" value="$(arg headless)"/>
-	</include>
+    <!-- Launch gazebo itself! -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world)"/>
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
 
-	<!-- Spawn our robot model! -->
-	<node name="urdf_spawner" 
-		pkg="gazebo_ros" 
-		type="spawn_model" 
-		respawn="false"
-		output="screen"
- 		args="-urdf -model mobile -param robot_description" />
+    <!-- Spawn our robot model! -->
+    <node name="urdf_spawner" 
+        pkg="gazebo_ros" 
+        type="spawn_model" 
+        respawn="false"
+        output="screen"
+         args="-urdf -model mobile -param robot_description" />
 
-	<!-- Start rviz for visualization! -->
- 	<!-- <node name="rviz" 
-    	pkg="rviz" 
-    	type="rviz" 
-    	args="-d $(arg rvizconfig)" 
-    	required="false" /> -->
+    <!-- Start rviz for visualization! -->
+     <!-- <node name="rviz" 
+        pkg="rviz" 
+        type="rviz" 
+        args="-d $(arg rvizconfig)" 
+        required="false" /> -->
 
 </launch>

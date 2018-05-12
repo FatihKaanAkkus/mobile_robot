@@ -55,7 +55,7 @@ namespace my_controller_pkg
 
     private:
         /// Holds joint's name
-		std::string jointName_;
+        std::string jointName_;
         /// Interface for joint handling
         hardware_interface::JointHandle jointHandle_;
 

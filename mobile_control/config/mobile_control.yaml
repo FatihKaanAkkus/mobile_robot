@@ -20,7 +20,7 @@ mobile:
     pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
     twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
     cmd_vel_timeout: 20.0 
-    wheel_separation: 0.287
+    wheel_separation: 0.303
     wheel_radius: 0.045
     base_frame_id: base_footprint
     odom_frame_id: odom
@@ -113,9 +113,9 @@ mobile:
   joint_1_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_1
-    Kp: 65.0
-    Ki: 0.065
-    Kd: 6.5
+    Kp: 100.0
+    Ki: 0.1
+    Kd: 10.0
     iMax: 100.0
     filter_constant: 100 # [Hz]
     has_position_limits: true
@@ -132,9 +132,9 @@ mobile:
   joint_2_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_2
-    Kp: 65.0
-    Ki: 0.065
-    Kd: 6.5
+    Kp: 100.0
+    Ki: 0.1
+    Kd: 10.0
     iMax: 100.0
     filter_constant: 100 # [Hz]
     has_position_limits: true
@@ -151,9 +151,9 @@ mobile:
   joint_3_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_3
-    Kp: 50.0
-    Ki: 0.05
-    Kd: 5.0
+    Kp: 100.0
+    Ki: 0.1
+    Kd: 10.0
     iMax: 100.0
     filter_constant: 100 # [Hz]
     has_position_limits: true
@@ -170,9 +170,9 @@ mobile:
   joint_4_controller:
     type: my_controller_pkg/ArmController
     joint: m_joint_4
-    Kp: 2.0
-    Ki: 0.002
-    Kd: 0.2
+    Kp: 100.0
+    Ki: 0.1
+    Kd: 10.0
     iMax: 100.0
     filter_constant: 100 # [Hz]
     has_position_limits: true
@@ -203,4 +203,42 @@ mobile:
     max_position: 3.1416
     min_velocity: -2.0
     max_velocity: 2.0
+    max_effort: 6.0
+
+  gripper_finger_left_controller:
+    type: my_controller_pkg/ArmController
+    joint: finger_joint_1
+    Kp: 100.0
+    Ki: 0.1
+    Kd: 10.0
+    iMax: 100.0
+    filter_constant: 100 # [Hz]
+    has_position_limits: true
+    has_velocity_limits: true
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    min_position: 0.0
+    max_position: 0.03
+    min_velocity: -0.03
+    max_velocity: 0.03
+    max_effort: 6.0
+
+  gripper_finger_right_controller:
+    type: my_controller_pkg/ArmController
+    joint: finger_joint_2
+    Kp: 100.0
+    Ki: 0.1
+    Kd: 10.0
+    iMax: 100.0
+    filter_constant: 100 # [Hz]
+    has_position_limits: true
+    has_velocity_limits: true
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    min_position: -0.03
+    max_position: 0.0
+    min_velocity: -0.03
+    max_velocity: 0.03
     max_effort: 6.0

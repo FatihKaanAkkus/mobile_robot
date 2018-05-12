@@ -8,21 +8,21 @@ DWAPlannerROS:
     holonomic_robot: false
 
     # Robot Configuration Parameters
-    acc_lim_x:  0.50 #1.00
+    acc_lim_x:  0.5 #1.00
     acc_lim_y:  0.0
-    acc_lim_th: 0.8 #2.00
-    acc_lim_theta: 0.8
+    acc_lim_th: 0.5 #2.00
+    acc_lim_theta: 0.5
     acc_limit_trans: 0.5
 
     max_trans_vel: 0.50
     min_trans_vel: 0.10
 
-    max_vel_x: 0.40
-    min_vel_x: -0.40
+    max_vel_x: 0.30
+    min_vel_x: -0.30
     max_vel_y: 0.00
     min_vel_y: 0.00
-    max_rot_vel: 1.00
-    min_rot_vel: -1.00
+    max_rot_vel: 0.30
+    min_rot_vel: -0.30
     
     # Goal Tolerance Parameters
     yaw_goal_tolerance: 0.10
