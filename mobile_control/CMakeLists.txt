@@ -6,7 +6,6 @@ find_package(catkin REQUIRED COMPONENTS
   hardware_interface
   my_controller_pkg
   roscpp
-  trajectory_msgs
   actionlib
 )
 
@@ -23,7 +22,6 @@ catkin_package(
     hardware_interface
     my_controller_pkg
     roscpp
-    trajectory_msgs
     actionlib
 )
 
@@ -37,11 +35,15 @@ target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 add_executable(command_joints_app src/command_joints_app.cpp)
 target_link_libraries(command_joints_app ${PROJECT_NAME} ${catkin_LIBRARIES})
 
+# Executable: go_initial_pose
+add_executable(go_initial_pose src/go_initial_pose.cpp)
+target_link_libraries(go_initial_pose ${PROJECT_NAME} ${catkin_LIBRARIES})
+
 # Install
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 
-install(TARGETS ${PROJECT_NAME} command_joints_app
+install(TARGETS ${PROJECT_NAME} command_joints_app go_initial_pose
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})

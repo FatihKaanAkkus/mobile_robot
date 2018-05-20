@@ -8,7 +8,7 @@ namespace mobile_control
 {
     CommandJoints::CommandJoints(ros::NodeHandle &n):
         node_(n),
-        action_server_(node_, "command_joints_action",
+        action_server_(node_, "command_joints",
             boost::bind(&CommandJoints::goal_Callback, this, _1),
             boost::bind(&CommandJoints::cancel_Callback, this, _1),
             false),

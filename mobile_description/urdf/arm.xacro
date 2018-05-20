@@ -363,7 +363,8 @@
             <origin 
                 xyz = "0 0 0"
                 rpy = "0 0 0"/>
-            <mass value="0.05"/>
+            <mass 
+                value="0.05"/>
             <inertia 
                 ixx="0.000004" 
                 ixy="0.0" 
@@ -411,9 +412,10 @@
         </collision>
         <inertial>
             <origin 
-                xyz="0 0 0"
+                xyz="-0.035 0 0.045"
                 rpy="0 0 0" />
-            <mass value="0.05"/>
+            <mass 
+                value="0.05"/>
             <inertia 
                 ixx="0.0001" 
                 ixy="0.0" 
@@ -459,7 +461,8 @@
             <origin 
                 xyz="0.035 0 0.045"
                 rpy="0 0 0" />
-            <mass value="0.05"/>
+            <mass 
+                value="0.05"/>
             <inertia 
                 ixx="0.00001" 
                 ixy="0.0" 

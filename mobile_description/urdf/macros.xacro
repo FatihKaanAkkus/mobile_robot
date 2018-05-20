@@ -39,7 +39,8 @@
                 <origin 
                     xyz="0 0 0.005" 
                     rpy="0 0 0" />
-                <mass value="${wheelMass}"/>
+                <mass 
+                    value="${wheelMass}"/>
                 <cylinder_inertia 
                     m="${wheelMass}" 
                     r="${wheelRadius}" 
@@ -83,7 +84,7 @@
         <gazebo reference="w${lr}${fb}">
             <mu1 value="1.2"/>
             <mu2 value="1.2"/>
-            <kp value="1.0E+6"/>
+            <kp value="1.0E+7"/>
             <kd value="1.0E+0"/>
             <minDepth>0.001</minDepth>
             <maxVel>100.0</maxVel>

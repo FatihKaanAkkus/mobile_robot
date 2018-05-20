@@ -3,7 +3,7 @@
 <robot name="mobile" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- Robot constants and properties -->
-    <xacro:include filename="$(find mobile_description)/urdf/mobile_properties.xacro" />
+    <xacro:include filename="$(find mobile_description)/urdf/properties.xacro" />
     <!-- Import Rviz colors -->
     <xacro:include filename="$(find mobile_description)/urdf/materials.xacro" />
     <!-- Gazebo aspects of the robot -->
@@ -22,9 +22,11 @@
     <!-- robot chassis -->
     <link name="chassis">
         <inertial> 
-            <origin xyz="0 0 ${wheelRadius+0.035}" 
-                    rpy="0 0 0"/> 
-            <mass value="12.0"/> 
+            <origin 
+                xyz="0 0 ${wheelRadius+0.035}" 
+                rpy="0 0 0"/> 
+            <mass 
+                value="12.0"/> 
             <inertia
                 ixx="0.04680"
                 ixy="0"
@@ -34,16 +36,18 @@
                 izz="0.10440" />
         </inertial>
         <visual> 
-            <origin xyz="0 0 ${wheelRadius}" 
-                    rpy="0 0 0"/> 
+            <origin 
+                xyz="0 0 ${wheelRadius}" 
+                rpy="0 0 0"/> 
             <geometry>
                 <mesh filename="package://mobile_description/meshes/chassis.STL" />
             </geometry> 
             <material name="red"/>
         </visual>
         <collision> 
-            <origin xyz="0 0 ${wheelRadius}" 
-                    rpy="0 0 0"/> 
+            <origin 
+                xyz="0 0 ${wheelRadius}" 
+                rpy="0 0 0"/> 
             <geometry> 
                 <mesh filename="package://mobile_description/meshes/chassis.STL" />
             </geometry> 

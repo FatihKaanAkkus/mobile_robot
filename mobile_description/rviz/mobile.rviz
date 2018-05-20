@@ -1,13 +1,12 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 75
+    Help Height: 112
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /RobotModel1
-        - /TF1
+        - /Camera1/Visibility1
       Splitter Ratio: 0.5
-    Tree Height: 469
+    Tree Height: 183
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -26,7 +25,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: Camera
 Visualization Manager:
   Class: ""
   Displays:
@@ -68,6 +67,16 @@ Visualization Manager:
           Show Trail: false
           Value: true
         chassis:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_finger_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_finger_right:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -138,15 +147,89 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        base_footprint:
+          Value: true
+        camera_link:
+          Value: true
+        chassis:
+          Value: true
+        gripper_finger_left:
+          Value: true
+        gripper_finger_right:
+          Value: true
+        hokuyo_link:
+          Value: true
+        m_base:
+          Value: true
+        m_link_1:
+          Value: true
+        m_link_2:
+          Value: true
+        m_link_3:
+          Value: true
+        m_link_4:
+          Value: true
+        m_link_gripper:
+          Value: true
+        odom:
+          Value: true
+        wlb:
+          Value: true
+        wlf:
+          Value: true
+        wrb:
+          Value: true
+        wrf:
+          Value: true
       Marker Scale: 0.100000001
       Name: TF
       Show Arrows: false
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        odom:
+          base_footprint:
+            chassis:
+              camera_link:
+                {}
+              hokuyo_link:
+                {}
+              m_base:
+                m_link_1:
+                  m_link_2:
+                    m_link_3:
+                      m_link_4:
+                        m_link_gripper:
+                          gripper_finger_left:
+                            {}
+                          gripper_finger_right:
+                            {}
+              wlb:
+                {}
+              wlf:
+                {}
+              wrb:
+                {}
+              wrf:
+                {}
       Update Interval: 0
       Value: true
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /mobile/camera1/image_raw
+      Name: Camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Grid: true
+        RobotModel: true
+        TF: true
+        Value: false
+      Zoom Factor: 1
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -193,12 +276,14 @@ Visualization Manager:
       Yaw: 5.45489597
     Saved: ~
 Window Geometry:
+  Camera:
+    collapsed: false
   Displays:
     collapsed: false
   Height: 744
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000016a00000261fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006100fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000002800000261000000d700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f00000258fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000002800000258000000ad00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000005250000003bfc0100000002fb0000000800540069006d00650100000000000005250000030000fffffffb0000000800540069006d00650100000000000004500000000000000000000003b50000026100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000016a00000261fc0200000009fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006100fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000002800000168000000d700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000196000000f30000001600ffffff000000010000010f00000258fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000002800000258000000ad00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000005250000003bfc0100000002fb0000000800540069006d00650100000000000005250000030000fffffffb0000000800540069006d00650100000000000004500000000000000000000003b50000026100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:

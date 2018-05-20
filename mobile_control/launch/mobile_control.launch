@@ -10,7 +10,7 @@
         output="screen"
         ns="/mobile" 
         args="joint_state_controller 
-            skidsteer_controller
+            diff_drive_controller
             joint_1_controller
             joint_2_controller
             joint_3_controller
@@ -30,6 +30,8 @@
     <!-- <node pkg="rqt_console" type="rqt_console" name="rqt_console_node"/> -->
 
     <node ns="mobile" pkg="mobile_control" type="command_joints_app" name="command_joints_app" output="screen"/>
+
+    <node pkg="mobile_control" type="go_initial_pose" name="go_initial_pose" output="screen"/>
 
     <node pkg="rqt_gui" type="rqt_gui" name="qrt_gui_node"/>
 

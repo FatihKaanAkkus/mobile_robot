@@ -12,15 +12,15 @@ mobile:
   #   MobileController, which we have created, uses velocity joint interface instead of effort joint interface,
   # but the velocity joint interface and controller created onto the effort joint interface,
   # just like in the WheelController that we have designed.
-  skidsteer_controller:
+  diff_drive_controller:
     type: "my_controller_pkg/MobileController"
     left_wheel: ['wljf', 'wljb']
     right_wheel: ['wrjf', 'wrjb']
-    publish_rate: 50.0
+    publish_rate: 120.0
     pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
     twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
     cmd_vel_timeout: 20.0 
-    wheel_separation: 0.303
+    wheel_separation: 0.329
     wheel_radius: 0.045
     base_frame_id: base_footprint
     odom_frame_id: odom
@@ -43,71 +43,6 @@ mobile:
         max_acceleration: 2.0
         has_jerk_limits: true
         max_jerk: 10.0
-
-  # Wheel Controllers ---------------------------------------
-  # leftFrontWheel_controller:
-  #   type: my_controller_pkg/WheelController
-  #   joint: wljf
-  #   Kp: 1.0
-  #   Ki: 0.0025
-  #   Kd: 0.0
-  #   iMax: 20.0
-  #   has_position_limits: false
-  #   has_velocity_limits: true
-  #   has_acceleration_limits: false
-  #   has_jerk_limits: false
-  #   has_effort_limits: true
-  #   max_velocity: 2.0
-  #   max_effort: 6.0
-  #   filter_constant: 20 # [Hz]
-    
-  # leftBackWheel_controller:
-  #   type: my_controller_pkg/WheelController
-  #   joint: wljb
-  #   Kp: 1.0
-  #   Ki: 0.0025
-  #   Kd: 0.0
-  #   iMax: 20.0
-  #   has_position_limits: false
-  #   has_velocity_limits: true
-  #   has_acceleration_limits: false
-  #   has_jerk_limits: false
-  #   has_effort_limits: true
-  #   max_velocity: 2.0
-  #   max_effort: 6.0
-  #   filter_constant: 20 # [Hz]
-
-  # rightFrontWheel_controller:
-  #   type: my_controller_pkg/WheelController
-  #   joint: wrjf
-  #   Kp: 1.0
-  #   Ki: 0.0025
-  #   Kd: 0.0
-  #   iMax: 20.0
-  #   has_position_limits: false
-  #   has_velocity_limits: true
-  #   has_acceleration_limits: false
-  #   has_jerk_limits: false
-  #   has_effort_limits: true
-  #   max_velocity: 2.0
-  #   max_effort: 6.0
-  #   filter_constant: 20 # [Hz]
-
-  # rightBackWheel_controller:
-  #   type: my_controller_pkg/WheelController
-  #   joint: wrjb
-  #   Kp: 1.0
-  #   Ki: 0.0025
-  #   Kd: 0.0
-  #   iMax: 20.0
-  #   has_position_limits: false
-  #   has_velocity_limits: true
-  #   has_acceleration_limits: false
-  #   has_jerk_limits: false
-  #   has_effort_limits: true
-  #   max_velocity: 2.0
-  #   max_effort: 6.0
-  #   filter_constant: 20 # [Hz]
 
   # Arm Controllers ---------------------------------------
   joint_1_controller:
@@ -242,3 +177,68 @@ mobile:
     min_velocity: -0.03
     max_velocity: 0.03
     max_effort: 6.0
+
+  # Wheel Controllers ---------------------------------------
+  # leftFrontWheel_controller:
+  #   type: my_controller_pkg/WheelController
+  #   joint: wljf
+  #   Kp: 1.0
+  #   Ki: 0.0025
+  #   Kd: 0.0
+  #   iMax: 20.0
+  #   has_position_limits: false
+  #   has_velocity_limits: true
+  #   has_acceleration_limits: false
+  #   has_jerk_limits: false
+  #   has_effort_limits: true
+  #   max_velocity: 2.0
+  #   max_effort: 6.0
+  #   filter_constant: 20 # [Hz]
+    
+  # leftBackWheel_controller:
+  #   type: my_controller_pkg/WheelController
+  #   joint: wljb
+  #   Kp: 1.0
+  #   Ki: 0.0025
+  #   Kd: 0.0
+  #   iMax: 20.0
+  #   has_position_limits: false
+  #   has_velocity_limits: true
+  #   has_acceleration_limits: false
+  #   has_jerk_limits: false
+  #   has_effort_limits: true
+  #   max_velocity: 2.0
+  #   max_effort: 6.0
+  #   filter_constant: 20 # [Hz]
+
+  # rightFrontWheel_controller:
+  #   type: my_controller_pkg/WheelController
+  #   joint: wrjf
+  #   Kp: 1.0
+  #   Ki: 0.0025
+  #   Kd: 0.0
+  #   iMax: 20.0
+  #   has_position_limits: false
+  #   has_velocity_limits: true
+  #   has_acceleration_limits: false
+  #   has_jerk_limits: false
+  #   has_effort_limits: true
+  #   max_velocity: 2.0
+  #   max_effort: 6.0
+  #   filter_constant: 20 # [Hz]
+
+  # rightBackWheel_controller:
+  #   type: my_controller_pkg/WheelController
+  #   joint: wrjb
+  #   Kp: 1.0
+  #   Ki: 0.0025
+  #   Kd: 0.0
+  #   iMax: 20.0
+  #   has_position_limits: false
+  #   has_velocity_limits: true
+  #   has_acceleration_limits: false
+  #   has_jerk_limits: false
+  #   has_effort_limits: true
+  #   max_velocity: 2.0
+  #   max_effort: 6.0
+  #   filter_constant: 20 # [Hz]

@@ -8,7 +8,7 @@
     <xacro:property name="chassisHeight" value="0.10"/>
     <xacro:property name="chassisLength" value="0.40"/>
     <xacro:property name="chassisWidth" value="0.27"/>
-    <xacro:property name="chassisMass" value="5.0"/>
+    <xacro:property name="chassisMass" value="12.0"/>
 
     <!-- Differential-drive wheels properties -->
     <xacro:property name="wheelWidth" value="0.026"/>

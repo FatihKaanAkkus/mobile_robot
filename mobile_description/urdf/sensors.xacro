@@ -1,89 +1,87 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <!-- Camera -->
+    <link name="camera_link">
+        <visual>
+            <origin 
+                xyz="0 0 0" 
+                rpy="0 0 0"/>
+            <geometry>
+                <box size="${cameraLength} ${cameraWidth} ${cameraHeight}"/>
+            </geometry>
+            <material name="green"/>
+        </visual>
+        <collision>
+            <origin 
+                xyz="0 0 0" 
+                rpy="0 0 0"/>
+            <geometry>
+                <box size="${cameraLength} ${cameraWidth} ${cameraHeight}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin 
+                xyz="0 0 0" 
+                rpy="0 0 0"/>
+            <mass 
+                value="${cameraMass}" />
+            <box_inertia 
+                m="${cameraMass}" 
+                x="${cameraLength}" 
+                y="${cameraWidth}" 
+                z="${cameraHeight}" />
+        </inertial>
+    </link>
 
-  <link name="camera_link">
-    <collision>
-      <origin xyz="0 0 0" 
-              rpy="0 0 0"/>
-      <geometry>
-        <box size="${cameraLength} 
-                   ${cameraWidth} 
-                   ${cameraHeight}"/>
-      </geometry>
-    </collision>
-
-    <visual>
-      <origin xyz="0 0 0" 
-              rpy="0 0 0"/>
-      <geometry>
-        <box size="${cameraLength} 
-                   ${cameraWidth} 
-                   ${cameraHeight}"/>
-      </geometry>
-      <material name="green"/>
-    </visual>
-
-    <inertial>
-      <mass value="${cameraMass}" />
-      <origin xyz="0 0 0" 
-              rpy="0 0 0"/>
-      <box_inertia m="${cameraMass}" 
-                   x="${cameraLength}" 
-                   y="${cameraWidth}" 
-                   z="${cameraHeight}" />
-    </inertial>
-
-  </link>
-
-
-  <joint name="camera_joint" type="fixed">
-    <axis xyz="0 1 0" />
-    <origin xyz="${cameraOffsetX} 0 ${cameraOffsetZ}" 
+    <joint name="camera_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="camera_link"/>
+        <origin 
+            xyz="${cameraOffsetX} 0 ${cameraOffsetZ}" 
             rpy="0 0 0"/>
-    <parent link="chassis"/>
-    <child link="camera_link"/>
-  </joint>
+        <axis xyz="0 1 0" />
+    </joint>
 
+    <!-- Hokuyo Laser -->
+    <link name="hokuyo_link">
+        <collision>
+            <origin 
+                xyz="0 0 0" 
+                rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mobile_description/meshes/hokuyo.dae"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin 
+                xyz="0 0 0" 
+                rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mobile_description/meshes/hokuyo.dae"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin 
+                xyz="0 0 0" 
+                rpy="0 0 0"/>
+            <mass 
+                value="${hokuyoMass}" />
+            <box_inertia 
+                m="${hokuyoMass}" 
+                x="${hokuyoLength}" 
+                y="${hokuyoWidth}" 
+                z="${hokuyoHeight}"/>
+        </inertial>
+    </link>
 
-  <joint name="hokuyo_joint" type="fixed">
-    <axis xyz="0 1 0" />
-    <origin xyz="${hokuyoOffsetX} 0 ${hokuyoOffsetZ}" 
+    <joint name="hokuyo_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="hokuyo_link"/>
+        <origin 
+            xyz="${hokuyoOffsetX} 0 ${hokuyoOffsetZ}" 
             rpy="0 0 0"/>
-    <parent link="chassis"/>
-    <child link="hokuyo_link"/>
-  </joint>
-
-
-  <!-- Hokuyo Laser -->
-  <link name="hokuyo_link">
-    <collision>
-      <origin xyz="0 0 0" 
-              rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://mobile_description/meshes/hokuyo.dae"/>
-      </geometry>
-    </collision>
-
-    <visual>
-      <origin xyz="0 0 0" 
-              rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://mobile_description/meshes/hokuyo.dae"/>
-      </geometry>
-    </visual>
-
-    <inertial>
-      <mass value="${hokuyoMass}" />
-      <origin xyz="0 0 0" 
-              rpy="0 0 0"/>
-      <box_inertia 
-        m="${hokuyoMass}" 
-        x="${hokuyoLength}" 
-        y="${hokuyoWidth}" 
-        z="${hokuyoHeight}"/>
-    </inertial>
-
-  </link>
+        <axis xyz="0 1 0" />
+    </joint>
 
 </robot>
