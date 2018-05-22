@@ -52,11 +52,11 @@ public:
     void posTwo()
     {
         my_controller_msgs::JointPositionsGoal posTwoGoal;
-        positions_[0] = -3.14;
+        positions_[0] = 0.0;
         positions_[1] = -1.567;
         positions_[2] = 2.2;
         positions_[3] = 1.57;
-        positions_[4] = 0.0;
+        positions_[4] = 3.14;
 
         posTwoGoal.joint_position = positions_;
         
@@ -68,6 +68,26 @@ public:
         else
             ROS_INFO("The second_test_pose failed.");
     }
+
+    void posThree()
+    {
+        my_controller_msgs::JointPositionsGoal posThreeGoal;
+        positions_[0] = 1.57;
+        positions_[1] = 0.1;
+        positions_[2] = 0.5;
+        positions_[3] = 0.57;
+        positions_[4] = 1.0;
+
+        posThreeGoal.joint_position = positions_;
+        
+        ROS_INFO("Sending third_test_pose goal");
+        command_client_->sendGoal(posThreeGoal);
+        command_client_->waitForResult();
+        if(command_client_->getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+            ROS_INFO("The third_test_pose succeded!");
+        else
+            ROS_INFO("The third_test_pose failed.");
+    }
 };
 
 int main(int argc, char** argv)
@@ -76,8 +96,15 @@ int main(int argc, char** argv)
 
     Commander commander;
 
+    ros::Duration(0.5).sleep();
     commander.posOne();
+    ros::Duration(0.5).sleep();
     commander.posTwo();
+    ros::Duration(0.5).sleep();
+    commander.posThree();
+    ros::Duration(0.5).sleep();
+    commander.posOne();
+    ros::Duration(0.5).sleep();
 
     return 0;
 }
