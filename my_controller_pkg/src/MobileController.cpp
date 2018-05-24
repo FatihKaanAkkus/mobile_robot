@@ -135,6 +135,13 @@ namespace my_controller_pkg
 
         setOdomPubFields(root_nh, controller_nh);
 
+        // Parameter
+        if(!controller_nh.getParam("cmd_vel_timeout", cmd_vel_timeout_))
+        {
+            ROS_ERROR_STREAM_NAMED(name_, "'cmd_vel_timeout' parameter is needed.");
+            return false;
+        }
+
         // Limited velocity publisher
         if(publish_cmd_)
         {

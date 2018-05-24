@@ -99,12 +99,12 @@ int main(int argc, char** argv)
     ros::Duration(0.5).sleep();
     commander.posOne();
     ros::Duration(0.5).sleep();
-    commander.posTwo();
-    ros::Duration(0.5).sleep();
-    commander.posThree();
-    ros::Duration(0.5).sleep();
-    commander.posOne();
-    ros::Duration(0.5).sleep();
+    // commander.posTwo();
+    // ros::Duration(0.5).sleep();
+    // commander.posThree();
+    // ros::Duration(0.5).sleep();
+    // commander.posOne();
+    // ros::Duration(0.5).sleep();
 
     return 0;
 }

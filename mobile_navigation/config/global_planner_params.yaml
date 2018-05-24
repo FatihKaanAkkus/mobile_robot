@@ -1,19 +1,21 @@
 GlobalPlanner:
-    old_navfn_behavior: false
-    use_quadratic: true
-    use_dijkstra: true
-    use_grid_path: false
+    # Mainly known parameters
     allow_unknown: false
+    visualize_potential: false
+    use_dijkstra: true
+    use_quadratic: true
+    use_grid_path: false
+    old_navfn_behavior: false
 
+    # Some other suggested parameters
     planner_window_x: 0.0
     planner_window_y: 0.0
     default_tolerance: 0.0
-    
     publish_scale: 100
     planner_costmap_publish_frequency: 0.0
-    
+
+    # From experimental results in some papers    
     lethal_cost: 253
     neutral_cost: 66
     cost_factor: 0.55
-    publish_potential: true
-    
+    publish_potential: false

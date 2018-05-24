@@ -16,10 +16,10 @@ mobile:
     type: "my_controller_pkg/MobileController"
     left_wheel: ['wljf', 'wljb']
     right_wheel: ['wrjf', 'wrjb']
-    publish_rate: 120.0
+    publish_rate: 50.0
     pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
     twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
-    cmd_vel_timeout: 20.0 
+    cmd_vel_timeout: 0.200
     wheel_separation: 0.329
     wheel_radius: 0.045
     base_frame_id: base_footprint
@@ -28,19 +28,19 @@ mobile:
     linear:
       x:
         has_velocity_limits: true
-        min_velocity: -0.5
-        max_velocity: 1.0
+        min_velocity: -1.0
+        max_velocity: 2.0
         has_acceleration_limits: true
-        min_acceleration: -0.5
-        max_acceleration: 1.0
+        min_acceleration: -1.0
+        max_acceleration: 2.0
         has_jerk_limits: true
-        max_jerk: 5.0
+        max_jerk: 10.0
     angular:
       z:
         has_velocity_limits: true
-        max_velocity: 2.0
+        max_velocity: 2.5
         has_acceleration_limits: true
-        max_acceleration: 2.0
+        max_acceleration: 2.5
         has_jerk_limits: true
         max_jerk: 10.0
 
