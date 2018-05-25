@@ -296,8 +296,8 @@ namespace my_controller_pkg
 
     void ArmController::stopping(const ros::Time& time)
     {
-        const double vel = 0.0;
-        jointHandle_.setCommand(vel);
+        const double pos = 0.0;
+        jointHandle_.setCommand(pos);
     }
 
     void ArmController::sub_cmd_Callback(const my_controller_msgs::ArmControllerCommand& msg)

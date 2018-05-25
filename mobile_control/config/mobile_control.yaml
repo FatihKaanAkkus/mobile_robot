@@ -46,99 +46,104 @@ mobile:
 
   # Arm Controllers ---------------------------------------
   joint_1_controller:
-    type: my_controller_pkg/ArmController
+    # type: my_controller_pkg/ArmController
+    type: my_controller_pkg/SimpleArmController
     joint: m_joint_1
-    Kp: 100.0
-    Ki: 0.1
-    Kd: 10.0
-    iMax: 100.0
-    filter_constant: 100 # [Hz]
-    has_position_limits: true
-    has_velocity_limits: true
-    has_acceleration_limits: false
-    has_jerk_limits: false
-    has_effort_limits: true
-    min_position: -3.1416
-    max_position: 3.1416
-    min_velocity: -1.5
-    max_velocity: 1.5
-    max_effort: 6.0
+    # Kp: 100.0
+    # Ki: 0.1
+    # Kd: 10.0
+    # iMax: 100.0
+    # filter_constant: 100 # [Hz]
+    # has_position_limits: true
+    # has_velocity_limits: true
+    # has_acceleration_limits: false
+    # has_jerk_limits: false
+    # has_effort_limits: true
+    # min_position: -3.1416
+    # max_position: 3.1416
+    # min_velocity: -1.5
+    # max_velocity: 1.5
+    # max_effort: 6.0
 
   joint_2_controller:
-    type: my_controller_pkg/ArmController
+    # type: my_controller_pkg/ArmController
+    type: my_controller_pkg/SimpleArmController
     joint: m_joint_2
-    Kp: 100.0
-    Ki: 0.1
-    Kd: 10.0
-    iMax: 100.0
-    filter_constant: 100 # [Hz]
-    has_position_limits: true
-    has_velocity_limits: true
-    has_acceleration_limits: false
-    has_jerk_limits: false
-    has_effort_limits: true
-    min_position: -1.5708
-    max_position: 1.5708
-    min_velocity: -1.5
-    max_velocity: 1.5
-    max_effort: 6.0
+    # Kp: 100.0
+    # Ki: 0.1
+    # Kd: 10.0
+    # iMax: 100.0
+    # filter_constant: 100 # [Hz]
+    # has_position_limits: true
+    # has_velocity_limits: true
+    # has_acceleration_limits: false
+    # has_jerk_limits: false
+    # has_effort_limits: true
+    # min_position: -1.5708
+    # max_position: 1.5708
+    # min_velocity: -1.5
+    # max_velocity: 1.5
+    # max_effort: 6.0
 
   joint_3_controller:
-    type: my_controller_pkg/ArmController
+    # type: my_controller_pkg/ArmController
+    type: my_controller_pkg/SimpleArmController
     joint: m_joint_3
-    Kp: 100.0
-    Ki: 0.1
-    Kd: 10.0
-    iMax: 100.0
-    filter_constant: 100 # [Hz]
-    has_position_limits: true
-    has_velocity_limits: true
-    has_acceleration_limits: false
-    has_jerk_limits: false
-    has_effort_limits: true
-    min_position: -3.1416
-    max_position: 3.1416
-    min_velocity: -1.5
-    max_velocity: 1.5
-    max_effort: 6.0
+    # Kp: 100.0
+    # Ki: 0.1
+    # Kd: 10.0
+    # iMax: 100.0
+    # filter_constant: 100 # [Hz]
+    # has_position_limits: true
+    # has_velocity_limits: true
+    # has_acceleration_limits: false
+    # has_jerk_limits: false
+    # has_effort_limits: true
+    # min_position: -3.1416
+    # max_position: 3.1416
+    # min_velocity: -1.5
+    # max_velocity: 1.5
+    # max_effort: 6.0
 
   joint_4_controller:
-    type: my_controller_pkg/ArmController
+    # type: my_controller_pkg/ArmController
+    type: my_controller_pkg/SimpleArmController
     joint: m_joint_4
-    Kp: 100.0
-    Ki: 0.1
-    Kd: 10.0
-    iMax: 100.0
-    filter_constant: 100 # [Hz]
-    has_position_limits: true
-    has_velocity_limits: true
-    has_acceleration_limits: false
-    has_jerk_limits: false
-    has_effort_limits: true
-    min_position: -3.1416
-    max_position: 3.1416
-    min_velocity: -2.0
-    max_velocity: 2.0
-    max_effort: 6.0
+    # Kp: 100.0
+    # Ki: 0.1
+    # Kd: 10.0
+    # iMax: 100.0
+    # filter_constant: 100 # [Hz]
+    # has_position_limits: true
+    # has_velocity_limits: true
+    # has_acceleration_limits: false
+    # has_jerk_limits: false
+    # has_effort_limits: true
+    # min_position: -3.1416
+    # max_position: 3.1416
+    # min_velocity: -2.0
+    # max_velocity: 2.0
+    # max_effort: 6.0
 
   joint_5_controller:
-    type: my_controller_pkg/ArmController
+    # type: my_controller_pkg/ArmController
+    type: my_controller_pkg/SimpleArmController
     joint: m_joint_5
-    Kp: 2.0
-    Ki: 0.002
-    Kd: 0.2
-    iMax: 100.0
-    filter_constant: 100 # [Hz]
-    has_position_limits: true
-    has_velocity_limits: true
-    has_acceleration_limits: false
-    has_jerk_limits: false
-    has_effort_limits: true
-    min_position: -3.1416
-    max_position: 3.1416
-    min_velocity: -2.0
-    max_velocity: 2.0
-    max_effort: 6.0
+    # Kp: 2.0
+    # Ki: 0.002
+    # Kd: 0.2
+    # iMax: 100.0
+    # filter_constant: 100 # [Hz]
+    # has_position_limits: true
+    # has_velocity_limits: true
+    # has_acceleration_limits: false
+    # has_jerk_limits: false
+    # has_effort_limits: true
+    # min_position: -3.1416
+    # max_position: 3.1416
+    # min_velocity: -2.0
+    # max_velocity: 2.0
+    # max_effort: 6.0
 
   gripper_finger_left_controller:
     type: my_controller_pkg/ArmController
@@ -177,68 +182,3 @@ mobile:
     min_velocity: -0.01
     max_velocity: 0.01
     max_effort: 1.0
-
-  # Wheel Controllers ---------------------------------------
-  # leftFrontWheel_controller:
-  #   type: my_controller_pkg/WheelController
-  #   joint: wljf
-  #   Kp: 1.0
-  #   Ki: 0.0025
-  #   Kd: 0.0
-  #   iMax: 20.0
-  #   has_position_limits: false
-  #   has_velocity_limits: true
-  #   has_acceleration_limits: false
-  #   has_jerk_limits: false
-  #   has_effort_limits: true
-  #   max_velocity: 2.0
-  #   max_effort: 6.0
-  #   filter_constant: 20 # [Hz]
-    
-  # leftBackWheel_controller:
-  #   type: my_controller_pkg/WheelController
-  #   joint: wljb
-  #   Kp: 1.0
-  #   Ki: 0.0025
-  #   Kd: 0.0
-  #   iMax: 20.0
-  #   has_position_limits: false
-  #   has_velocity_limits: true
-  #   has_acceleration_limits: false
-  #   has_jerk_limits: false
-  #   has_effort_limits: true
-  #   max_velocity: 2.0
-  #   max_effort: 6.0
-  #   filter_constant: 20 # [Hz]
-
-  # rightFrontWheel_controller:
-  #   type: my_controller_pkg/WheelController
-  #   joint: wrjf
-  #   Kp: 1.0
-  #   Ki: 0.0025
-  #   Kd: 0.0
-  #   iMax: 20.0
-  #   has_position_limits: false
-  #   has_velocity_limits: true
-  #   has_acceleration_limits: false
-  #   has_jerk_limits: false
-  #   has_effort_limits: true
-  #   max_velocity: 2.0
-  #   max_effort: 6.0
-  #   filter_constant: 20 # [Hz]
-
-  # rightBackWheel_controller:
-  #   type: my_controller_pkg/WheelController
-  #   joint: wrjb
-  #   Kp: 1.0
-  #   Ki: 0.0025
-  #   Kd: 0.0
-  #   iMax: 20.0
-  #   has_position_limits: false
-  #   has_velocity_limits: true
-  #   has_acceleration_limits: false
-  #   has_jerk_limits: false
-  #   has_effort_limits: true
-  #   max_velocity: 2.0
-  #   max_effort: 6.0
-  #   filter_constant: 20 # [Hz]

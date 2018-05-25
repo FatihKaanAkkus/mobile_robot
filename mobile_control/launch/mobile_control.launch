@@ -29,7 +29,7 @@
 
     <!-- <node pkg="rqt_console" type="rqt_console" name="rqt_console_node"/> -->
 
-    <node ns="mobile" pkg="mobile_control" type="command_joints_app" name="command_joints_app" output="screen"/>
+    <!-- <node ns="mobile" pkg="mobile_control" type="command_joints_app" name="command_joints_app" output="screen"/> -->
 
     <!-- <node pkg="mobile_control" type="go_initial_pose" name="go_initial_pose" output="screen"/> -->
 

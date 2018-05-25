@@ -25,6 +25,7 @@ add_library(${PROJECT_NAME}
   src/my_robot_hw.cpp
   src/SimpleController.cpp
   src/ArmController.cpp
+  src/SimpleArmController.cpp
   src/WheelController.cpp
   src/SpeedLimiter.cpp
   src/Odometry.cpp
