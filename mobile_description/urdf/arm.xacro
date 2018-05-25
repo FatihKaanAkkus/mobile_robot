@@ -103,10 +103,10 @@
         <axis
             xyz="0 0 1" />
         <limit 
-            effort="6.0"
+            effort="10.0"
             velocity="1.0"
-            lower="${-3.14}"
-            upper="${3.14}" />
+            lower="${-1.60}"
+            upper="${1.60}" />
 
     </joint>
     <link
@@ -162,7 +162,7 @@
         <axis
             xyz="0 0 1" />
         <limit 
-            effort="6.0"
+            effort="10.0"
             velocity="1.0"
             lower="${-3.14}"
             upper="${3.14}"/>
@@ -220,7 +220,7 @@
         <axis
             xyz="0 0 1" />
         <limit 
-            effort="6.0"
+            effort="10.0"
             velocity="1.0"
             lower="${-3.14}"
             upper="${3.14}"/>
@@ -278,7 +278,7 @@
         <axis
             xyz="0 0 1" />
         <limit 
-            effort="6.0"
+            effort="10.0"
             velocity="1.0"
             lower="${-3.14}"
             upper="${3.14}"/>
@@ -336,7 +336,7 @@
         <axis
             xyz="0 0 1" />
         <limit 
-            effort="6.0"
+            effort="10.0"
             velocity="1.0"
             lower="${-3.14}"
             upper="${3.14}"/>
@@ -387,7 +387,7 @@
         <axis
             xyz="0 0 1" />
         <limit 
-            effort="6.0"
+            effort="10.0"
             velocity="1.0"
             lower="${-3.14}"
             upper="${3.14}"/>
@@ -436,7 +436,7 @@
         <axis 
             xyz="1 0 0"/>
         <limit 
-            effort="6" lower="0" upper="0.03" velocity="1.0"/>
+            effort="10" lower="0" upper="0.03" velocity="1.0"/>
         <dynamics damping="50" friction="1"/>
     </joint>
      <link name="gripper_finger_right">
@@ -482,7 +482,7 @@
         <axis 
             xyz="1 0 0"/>
         <limit 
-            effort="6" lower="-0.03" upper="0" velocity="1.0"/>
+            effort="10.0" lower="-0.03" upper="0" velocity="1.0"/>
     </joint>
 
     <!-- Arm @ Gazebo -->

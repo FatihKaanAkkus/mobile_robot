@@ -13,7 +13,7 @@
     <!-- Differential-drive wheels properties -->
     <xacro:property name="wheelWidth" value="0.026"/>
     <xacro:property name="wheelRadius" value="0.045"/>
-    <xacro:property name="wheelMass" value="0.060"/>
+    <xacro:property name="wheelMass" value="0.12"/>
     <xacro:property name="wheelOffsetY" value="0.037"/>
 
     <!-- Hokuyo laser properties -->
