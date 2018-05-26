@@ -59,6 +59,9 @@ namespace my_controller_pkg
         realtime_tools::RealtimeBuffer<double> command_buffer_;
 
     private:
+        /// Last time for command timeout
+        ros::Time last_cmd_time_;
+
         /// Subscribers for controller topics
         ros::Subscriber sub_command_;
         ros::Publisher pub_state_;

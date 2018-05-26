@@ -147,11 +147,12 @@ mobile:
 
   gripper_finger_left_controller:
     type: my_controller_pkg/ArmController
+    # type: my_controller_pkg/SimpleArmController
     joint: finger_joint_1
-    Kp: 10.0
-    Ki: 0.01
-    Kd: 1.0
-    iMax: 10.0
+    Kp: 200.0
+    Ki: 0.2
+    Kd: 20.0
+    iMax: 100.0
     filter_constant: 100 # [Hz]
     has_position_limits: true
     has_velocity_limits: false
@@ -166,11 +167,12 @@ mobile:
 
   gripper_finger_right_controller:
     type: my_controller_pkg/ArmController
+    # type: my_controller_pkg/SimpleArmController
     joint: finger_joint_2
-    Kp: 10.0
-    Ki: 0.01
-    Kd: 1.0
-    iMax: 10.0
+    Kp: 200.0
+    Ki: 0.2
+    Kd: 20.0
+    iMax: 100.0
     filter_constant: 100 # [Hz]
     has_position_limits: true
     has_velocity_limits: false

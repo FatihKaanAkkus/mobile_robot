@@ -37,7 +37,13 @@ namespace my_controller_pkg
 
     void SimpleArmController::update(const ros::Time& time, const ros::Duration& period)
     {
-        my_controller_msgs::ControllerState state;
+        my_controller_msgs::ControllerState state;     
+
+        // Check if cmd_vel timed out
+        if((time - last_cmd_time_).toSec() > 1.0)
+        {
+            command_buffer_.writeFromNonRT(0.0);
+        }
 
         joint_.setCommand(*command_buffer_.readFromRT());
 
@@ -54,6 +60,7 @@ namespace my_controller_pkg
     void SimpleArmController::commandCB(const std_msgs::Float64ConstPtr& msg)
     {
         command_buffer_.writeFromNonRT(msg->data);
+        last_cmd_time_ = ros::Time::now();
     }
 
 }

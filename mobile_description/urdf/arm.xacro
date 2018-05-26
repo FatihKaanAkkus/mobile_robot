@@ -50,6 +50,7 @@
         <axis xyz="0 0 0"/>
         <limit effort="0" velocity="0"/>
     </joint>
+
     <link
         name="m_link_1">
         <inertial>
@@ -95,7 +96,7 @@
         type="revolute">
         <origin
             xyz="0 0 0.018"
-            rpy="9.5272E-17 2.5487E-17 -1.5708" />
+            rpy="9.5272E-17 2.5487E-17 +1.5708" />
         <parent
             link="m_base" />
         <child
@@ -104,11 +105,13 @@
             xyz="0 0 1" />
         <limit 
             effort="10.0"
-            velocity="1.0"
-            lower="${-1.60}"
-            upper="${1.60}" />
-
+            velocity="2.0"
+            lower="${-3.1416}"
+            upper="${3.1416}" />
+        <dynamics 
+            damping="0.1" friction="0.16"/>
     </joint>
+
     <link
         name="m_link_2">
         <inertial>
@@ -154,19 +157,22 @@
         type="revolute">
         <origin
             xyz="0 0 0.055"
-            rpy="1.5708 -1.5708 0" />
+            rpy="1.5708 -1.5708 +0.0001" />
         <parent
             link="m_link_1" />
         <child
             link="m_link_2" />
         <axis
-            xyz="0 0 1" />
+            xyz="0 0 -1" />
         <limit 
             effort="10.0"
-            velocity="1.0"
-            lower="${-3.14}"
-            upper="${3.14}"/>
+            velocity="2.0"
+            lower="${0.0}"
+            upper="${1.658}"/>
+        <dynamics 
+            damping="0.1" friction="0.16"/>
     </joint>
+    
     <link
         name="m_link_3">
         <inertial>
@@ -212,19 +218,22 @@
         type="revolute">
         <origin
             xyz="0.2 0 0"
-            rpy="4.4409E-16 4.5852E-16 -1.7798E-16" />
+            rpy="4.4409E-16 4.5852E-16 +0.0001" />
         <parent
             link="m_link_2" />
         <child
             link="m_link_3" />
         <axis
-            xyz="0 0 1" />
+            xyz="0 0 -1" />
         <limit 
             effort="10.0"
-            velocity="1.0"
-            lower="${-3.14}"
-            upper="${3.14}"/>
+            velocity="2.0"
+            lower="${0.0}"
+            upper="${2.2165}"/>
+        <dynamics 
+            damping="0.1" friction="0.16"/>
     </joint>
+
     <link
         name="m_link_4">
         <inertial>
@@ -270,19 +279,22 @@
         type="revolute">
         <origin
             xyz="0.2 0 0"
-            rpy="-3.3307E-16 -6.6356E-16 -1.9531E-16" />
+            rpy="-3.3307E-16 -6.6356E-16 +0.0001" />
         <parent
             link="m_link_3" />
         <child
             link="m_link_4" />
         <axis
-            xyz="0 0 1" />
+            xyz="0 0 -1" />
         <limit 
             effort="10.0"
-            velocity="1.0"
-            lower="${-3.14}"
-            upper="${3.14}"/>
+            velocity="2.0"
+            lower="${-1.309}"
+            upper="${1.8326}"/>
+        <dynamics 
+            damping="0.1" friction="0.16"/>
     </joint>
+
     <!-- <link
         name="m_link_gripper">
         <inertial>
@@ -341,6 +353,7 @@
             lower="${-3.14}"
             upper="${3.14}"/>
     </joint> -->
+
     <link name="m_link_gripper">
         <visual>
             <origin 
@@ -388,10 +401,13 @@
             xyz="0 0 1" />
         <limit 
             effort="10.0"
-            velocity="1.0"
+            velocity="2.0"
             lower="${-3.14}"
             upper="${3.14}"/>
+        <dynamics 
+            damping="0.1" friction="0.16"/>
     </joint>
+
     <link name="gripper_finger_left">
         <visual>
             <origin 
@@ -437,8 +453,10 @@
             xyz="1 0 0"/>
         <limit 
             effort="10" lower="0" upper="0.03" velocity="1.0"/>
-        <dynamics damping="50" friction="1"/>
+        <dynamics 
+            damping="0.01" friction="0.16"/>
     </joint>
+
      <link name="gripper_finger_right">
         <visual>
             <origin 
@@ -483,6 +501,8 @@
             xyz="1 0 0"/>
         <limit 
             effort="10.0" lower="-0.03" upper="0" velocity="1.0"/>
+        <dynamics 
+            damping="0.01" friction="0.16"/>
     </joint>
 
     <!-- Arm @ Gazebo -->

@@ -33,6 +33,6 @@
 
     <!-- <node pkg="mobile_control" type="go_initial_pose" name="go_initial_pose" output="screen"/> -->
 
-    <node pkg="rqt_gui" type="rqt_gui" name="qrt_gui_node"/>
+    <!-- <node pkg="rqt_gui" type="rqt_gui" name="qrt_gui_node"/> -->
 
 </launch>
