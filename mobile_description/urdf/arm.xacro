@@ -295,65 +295,6 @@
             damping="0.1" friction="0.16"/>
     </joint>
 
-    <!-- <link
-        name="m_link_gripper">
-        <inertial>
-            <origin
-                xyz="-0.0069546 0.0010309 -0.036727"
-                rpy="0 0 0" />
-            <mass
-                value="0.098787" />
-            <inertia
-                ixx="5.8957E-05"
-                ixy="1.4882E-06"
-                ixz="5.6679E-06"
-                iyy="6.3174E-05"
-                iyz="-4.7843E-07"
-                izz="2.5215E-05" />
-        </inertial>
-        <visual>
-            <origin
-                xyz="0 0 0"
-                rpy="0 0 0" />
-            <geometry>
-                <mesh
-                    filename="package://mobile_description/meshes/m_link_gripper.STL" />
-            </geometry>
-            <material
-                name="">
-                <color
-                    rgba="0.75294 0.75294 0.75294 1" />
-            </material>
-        </visual>
-        <collision>
-            <origin
-                xyz="0 0 0"
-                rpy="0 0 0" />
-            <geometry>
-                <mesh
-                    filename="package://mobile_description/meshes/m_link_gripper.STL" />
-            </geometry>
-        </collision>
-    </link> -->
-    <!-- <joint
-        name="m_joint_5"
-        type="revolute">
-        <origin
-            xyz="0.0895 0 0.0095"
-            rpy="1.5708 3.861E-32 -1.5708" />
-        <parent
-            link="m_link_4" />
-        <child
-            link="m_link_gripper" />
-        <axis
-            xyz="0 0 1" />
-        <limit 
-            effort="10.0"
-            velocity="1.0"
-            lower="${-3.14}"
-            upper="${3.14}"/>
-    </joint> -->
-
     <link name="m_link_gripper">
         <visual>
             <origin 
@@ -452,7 +393,10 @@
         <axis 
             xyz="1 0 0"/>
         <limit 
-            effort="10" lower="0" upper="0.03" velocity="1.0"/>
+            effort="10" 
+            lower="0" 
+            upper="0.03" 
+            velocity="1.0"/>
         <dynamics 
             damping="0.01" friction="0.16"/>
     </joint>
@@ -500,7 +444,10 @@
         <axis 
             xyz="1 0 0"/>
         <limit 
-            effort="10.0" lower="-0.03" upper="0" velocity="1.0"/>
+            effort="10.0" 
+            lower="-0.03" 
+            upper="0" 
+            velocity="1.0"/>
         <dynamics 
             damping="0.01" friction="0.16"/>
     </joint>

@@ -135,6 +135,13 @@ namespace my_controller_pkg
 
         setOdomPubFields(root_nh, controller_nh);
 
+        int velocity_rolling_window_size = 10;
+        controller_nh.param("velocity_rolling_window_size", velocity_rolling_window_size, velocity_rolling_window_size);
+        ROS_INFO_STREAM_NAMED(name_, "Velocity rolling window size of "
+            << velocity_rolling_window_size << ".");
+
+        odometry_.setVelocityRollingWindowSize(velocity_rolling_window_size);
+
         // Parameter
         if(!controller_nh.getParam("cmd_vel_timeout", cmd_vel_timeout_))
         {

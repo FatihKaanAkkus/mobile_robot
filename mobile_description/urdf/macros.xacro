@@ -10,7 +10,6 @@
             iyz="0"
             izz="${m*r*r/2}" />
     </xacro:macro>
-
     <xacro:macro name="box_inertia" params="m x y z">
         <inertia    
             ixx="${m*(y*y+z*z)/12}" 
@@ -20,7 +19,6 @@
             iyz="0"
             izz="${m*(x*x+y*y)/12}" />
     </xacro:macro>
-
     <xacro:macro name="sphere_inertia" params="m r">
         <inertia    
             ixx="${2*m*r*r/5}" 
@@ -34,7 +32,6 @@
     <xacro:macro name="wheel" params="lr fb Tlr Tfb">
 
         <link name="w${lr}${fb}">
-
             <inertial>
                 <origin 
                     xyz="0 0 0.005" 
@@ -46,7 +43,6 @@
                     r="${wheelRadius}" 
                     h="${wheelWidth}"/>
             </inertial>
-
             <collision>
                 <origin 
                     xyz="0 0 0" 
@@ -55,7 +51,6 @@
                     <mesh filename="package://mobile_description/meshes/w${lr}${fb}.STL" />
                 </geometry>
             </collision>
-
             <visual>
                 <origin 
                     xyz="0 0 0" 
@@ -65,7 +60,6 @@
                 </geometry>
                 <material name="black"/>
             </visual>
-
         </link>
 
         <joint name="w${lr}j${fb}" type="continuous">
@@ -77,8 +71,10 @@
             <axis 
                 xyz="0 0 ${Tlr}" 
                 rpy="0 0 0" />
-            <limit effort="100.0" velocity="100.0"/>
-            <joint_properties damping="0.0" friction="0.0"/>
+            <limit 
+                effort="100.0" 
+                velocity="100.0"/>
+            <dynamics damping="0.0" friction="0.0"/>
         </joint>
 
         <gazebo reference="w${lr}${fb}">

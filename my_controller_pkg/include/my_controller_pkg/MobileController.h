@@ -1,7 +1,3 @@
-/*
- * Author: Fatih Kaan AKKUS
- */
-
 #ifndef MY_CONTROLLER_PKG_MOBILECONTROLLER_H
 #define MY_CONTROLLER_PKG_MOBILECONTROLLER_H
 
@@ -23,6 +19,17 @@
 
 namespace my_controller_pkg 
 {
+    /*! 
+     *  \brief     Differential drive controller for path velocity command following.
+     *  \details   This class is used to calculate odometry and follow the given path related velocity instructions.
+     *  \author    F. Kaan AKKUS
+     *  \author    M. Turan SIMSEK
+     *  \version   1.0
+     *  \date      2018
+     *  \pre       First change the CMakeLists.txt library instruction.
+     *  \warning   Do not forget adding this class to *_plugins.xml
+     *  \copyright MIT License.
+     */
     class MobileController : public controller_interface::Controller<hardware_interface::VelocityJointInterface>
     {
     public: 

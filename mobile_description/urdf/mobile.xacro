@@ -69,5 +69,4 @@
     <!-- Sensor models -->
     <xacro:include filename="$(find mobile_description)/urdf/sensors.xacro" />
     
-
 </robot>

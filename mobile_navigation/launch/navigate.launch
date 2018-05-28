@@ -33,7 +33,7 @@ global_frame_id : map
         <rosparam file="$(find mobile_navigation)/config/navfn_global_planner_params.yaml" command="load" />
 
         <remap from="cmd_vel" to="mobile/diff_drive_controller/cmd_vel"/>
-        <remap from="odom" to="mobile/odom"/>
+        <remap from="odom" to="mobile/diff_drive_controller/odom"/>
 
     </node>
 

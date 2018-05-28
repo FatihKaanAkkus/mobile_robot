@@ -1,7 +1,3 @@
-/*
- * Author: Fatih Kaan AKKUS
- */
-
 #ifndef MY_CONTROLLER_PKG_SIMPLEARMCONTROLLER_H
 #define MY_CONTROLLER_PKG_SIMPLEARMCONTROLLER_H
 
@@ -17,6 +13,17 @@
 
 namespace my_controller_pkg
 {
+    /*! 
+     *  \brief     Simple effort controller w/ states.
+     *  \details   This class is used to create a simle effort controller while publishing the joint states on a specific topic.
+     *  \author    F. Kaan AKKUS
+     *  \author    M. Turan SIMSEK
+     *  \version   1.0
+     *  \date      2018
+     *  \pre       First change the CMakeLists.txt library instruction.
+     *  \warning   Do not forget adding this class to *_plugins.xml
+     *  \copyright MIT License.
+     */
     class SimpleArmController : public controller_interface::Controller<hardware_interface::EffortJointInterface>
     {
     public:

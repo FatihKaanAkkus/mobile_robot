@@ -19,7 +19,7 @@ mobile:
     publish_rate: 50.0
     pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
     twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
-    cmd_vel_timeout: 0.200
+    cmd_vel_timeout: 0.500
     wheel_separation: 0.329
     wheel_radius: 0.045
     base_frame_id: base_footprint
